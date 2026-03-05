@@ -18,7 +18,7 @@ const {
   description,
   canonicalPath = '',
   ogType = 'website',
-  ogImage = '/og-default.jpg',
+  ogImage = '/og-default.svg',
   breadcrumbs = [],
   additionalSchema = '',
 } = Astro.props;
@@ -33,7 +33,7 @@ const localBusinessSchema = JSON.stringify({
   '@type': 'LocalBusiness',
   '@id': `${siteUrl}/#business`,
   'name': 'ARED Furniture Repair & Antique Restoration',
-  'image': `${siteUrl}/og-default.jpg`,
+  'image': `${siteUrl}/og-default.svg`,
   'url': siteUrl,
   'telephone': '+12146826371',
   'priceRange': '$$',
