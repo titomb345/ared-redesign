@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/home/Hero.astro';
+import ServicesPreview from '../components/home/ServicesPreview.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import CTASection from '../components/home/CTASection.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+
+const websiteSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  'name': 'ARED Furniture Repair & Antique Restoration',
+  'url': 'https://aredrepair.com',
+  'potentialAction': {
+    '@type': 'SearchAction',
+    'target': {
+      '@type': 'EntryPoint',
+      'urlTemplate': 'https://aredrepair.com/?s={search_term_string}',
+    },
+    'query-input': 'required name=search_term_string',
+  },
+});
+
+const beforeAfterProjects = [
+  {
+    title: 'Victorian Settee Restoration',
+    beforeColor: '#6B5B4F',
+    afterColor: '#8B6F47',
+    description:
+      'Complete structural repair, reupholstery, and finish restoration of a 19th-century settee.',
+  },
+  {
+    title: 'Antique Rocking Chair',
+    beforeColor: '#5C4A3A',
+    afterColor: '#9B7B5A',
+    description:
+      'Joint tightening, spindle replacement, and hand-rubbed oil finish on a family heirloom rocker.',
+  },
+  {
+    title: '1930s Radio Cabinet',
+    beforeColor: '#4A3F35',
+    afterColor: '#7D6B5A',
+    description:
+      'Veneer repair, color matching, and lacquer restoration on a vintage radio cabinet.',
+  },
+];
+---
+
+<Layout
+  title="ARED Furniture Repair | Antique Restoration Wylie TX"
+  description="Expert furniture repair and antique restoration in Wylie, TX. Family-owned since 1980, serving DFW with free pickup and delivery. Call (214) 682-6371."
+  canonicalPath="/"
+  additionalSchema={websiteSchema}
+>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Services Preview -->
+  <ServicesPreview />
+
+  <!-- Before/After Showcase -->
+  <section class="py-20 md:py-28 bg-cream-dark/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading tagline="Featured Work"> Before & After Transformations </SectionHeading>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
+        {
+          beforeAfterProjects.map((project, index) => (
+            <div
+              class="rounded-sm overflow-hidden border border-gold/10 bg-cream shadow-sm hover:shadow-xl transition-all reveal"
+              style={`transition-delay: ${index * 100}ms`}
+            >
+              <div class="relative aspect-[4/3]">
+                <div class="absolute inset-0 flex">
+                  <div
+                    class="w-1/2 flex items-center justify-center text-cream/90 font-serif"
+                    style={`background-color: ${project.beforeColor}`}
+                  >
+                    <div class="text-center px-2">
+                      <span class="block text-xs uppercase tracking-wider opacity-60 mb-1">
+                        Before
+                      </span>
+                      <span class="text-xs opacity-70">Photo Placeholder</span>
+                    </div>
+                  </div>
+                  <div
+                    class="w-1/2 flex items-center justify-center text-cream/90 font-serif"
+                    style={`background-color: ${project.afterColor}`}
+                  >
+                    <div class="text-center px-2">
+                      <span class="block text-xs uppercase tracking-wider opacity-60 mb-1">
+                        After
+                      </span>
+                      <span class="text-xs opacity-70">Photo Placeholder</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="absolute top-0 bottom-0 left-1/2 w-0.5 bg-gold" />
+              </div>
+              <div class="p-5">
+                <h3 class="font-serif text-lg text-wood">{project.title}</h3>
+                <p class="text-sm text-charcoal-light mt-1">{project.description}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="text-center mt-12 reveal">
+        <a
+          href="/portfolio/"
+          class="inline-flex items-center gap-2 text-gold font-semibold hover:text-gold-dark transition-colors"
+        >
+          View Full Portfolio
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+          >
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <Testimonials />
+
+  <!-- Final CTA -->
+  <CTASection />
+</Layout>

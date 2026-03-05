@@ -1,0 +1,43 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  description: string;
+  features: string[];
+  index: number;
+}
+
+const { name, slug, description, features, index } = Astro.props;
+---
+
+<div id={slug} class="scroll-mt-24 reveal" style={`transition-delay: ${index * 100}ms`}>
+  <div
+    class="bg-cream-dark/40 border border-gold/10 rounded-sm p-8 md:p-10 hover:border-gold/25 transition-colors"
+  >
+    <h2 class="font-serif text-2xl md:text-3xl text-wood mb-4">{name}</h2>
+    <p class="text-charcoal-light leading-relaxed mb-6">{description}</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {
+        features.map((feature) => (
+          <div class="flex items-start gap-2">
+            <svg
+              class="w-5 h-5 text-gold flex-shrink-0 mt-0.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <span class="text-sm text-charcoal">{feature}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

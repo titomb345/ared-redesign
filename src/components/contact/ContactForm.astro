@@ -1,0 +1,115 @@
+---
+
+---
+
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="space-y-6"
+>
+  <!-- Honeypot field for spam prevention -->
+  <p class="hidden">
+    <label>
+      Don't fill this out if you're human: <input name="bot-field" />
+    </label>
+  </p>
+  <input type="hidden" name="form-name" value="contact" />
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <!-- Name -->
+    <div>
+      <label for="name" class="block text-sm font-medium text-charcoal mb-2">
+        Full Name <span class="text-burgundy">*</span>
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        autocomplete="name"
+        class="w-full px-4 py-3 bg-cream border border-gold/20 rounded-sm text-charcoal placeholder-warm-gray focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors"
+        placeholder="Your name"
+      />
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="email" class="block text-sm font-medium text-charcoal mb-2">
+        Email Address <span class="text-burgundy">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        autocomplete="email"
+        class="w-full px-4 py-3 bg-cream border border-gold/20 rounded-sm text-charcoal placeholder-warm-gray focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors"
+        placeholder="you@example.com"
+      />
+    </div>
+  </div>
+
+  <!-- Phone -->
+  <div>
+    <label for="phone" class="block text-sm font-medium text-charcoal mb-2"> Phone Number </label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      autocomplete="tel"
+      class="w-full px-4 py-3 bg-cream border border-gold/20 rounded-sm text-charcoal placeholder-warm-gray focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors"
+      placeholder="(555) 123-4567"
+    />
+  </div>
+
+  <!-- Service Interest -->
+  <div>
+    <label for="service" class="block text-sm font-medium text-charcoal mb-2">
+      Service Needed
+    </label>
+    <select
+      id="service"
+      name="service"
+      class="w-full px-4 py-3 bg-cream border border-gold/20 rounded-sm text-charcoal focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors"
+    >
+      <option value="">Select a service (optional)</option>
+      <option value="Antique Restoration">Antique Furniture Restoration</option>
+      <option value="Upholstery">Custom Upholstery & Repair</option>
+      <option value="Refinishing">Refinishing & Refurbishing</option>
+      <option value="Specialty Work">Specialty Work</option>
+      <option value="Other">Other / Not Sure</option>
+    </select>
+  </div>
+
+  <!-- Message -->
+  <div>
+    <label for="message" class="block text-sm font-medium text-charcoal mb-2">
+      Tell Us About Your Piece <span class="text-burgundy">*</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      rows="5"
+      class="w-full px-4 py-3 bg-cream border border-gold/20 rounded-sm text-charcoal placeholder-warm-gray focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors resize-y"
+      placeholder="Describe your furniture piece, the type of repair needed, and any other details that would help us give you an accurate estimate."
+    ></textarea>
+  </div>
+
+  <!-- Submit -->
+  <button
+    type="submit"
+    class="w-full sm:w-auto inline-flex items-center justify-center bg-burgundy text-cream px-8 py-4 rounded-sm font-semibold text-lg hover:bg-burgundy-dark transition-colors shadow-md hover:shadow-lg cursor-pointer"
+  >
+    Send Message
+    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+    </svg>
+  </button>
+</form>

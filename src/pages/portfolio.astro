@@ -1,0 +1,224 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GalleryItem from '../components/portfolio/GalleryItem.astro';
+
+const projects = [
+  {
+    title: 'Victorian Settee',
+    category: 'restoration',
+    beforeColor: '#6B5B4F',
+    afterColor: '#8B6F47',
+    description: 'Full structural restoration and finish renewal of an 1880s Victorian settee.',
+  },
+  {
+    title: 'Mid-Century Dining Chairs',
+    category: 'upholstery',
+    beforeColor: '#5A4A3E',
+    afterColor: '#7B6B5F',
+    description: 'Set of six chairs reupholstered with premium woven fabric and new foam.',
+  },
+  {
+    title: 'Oak Farm Table',
+    category: 'refinishing',
+    beforeColor: '#4D4035',
+    afterColor: '#9B8570',
+    description: 'Water-damaged tabletop stripped, sanded, stained, and sealed with polyurethane.',
+  },
+  {
+    title: 'Antique Rocking Chair',
+    category: 'restoration',
+    beforeColor: '#5C4A3A',
+    afterColor: '#9B7B5A',
+    description: 'Loose joints re-glued, broken spindle replaced, and hand-rubbed oil finish.',
+  },
+  {
+    title: 'Wingback Armchair',
+    category: 'upholstery',
+    beforeColor: '#554840',
+    afterColor: '#857565',
+    description: 'Complete tear-down and reupholstery with decorative nailhead trim.',
+  },
+  {
+    title: 'Mahogany Secretary Desk',
+    category: 'refinishing',
+    beforeColor: '#4A3F35',
+    afterColor: '#7D6B5A',
+    description: 'Stripped, color-matched, and French polished to restore original luster.',
+  },
+  {
+    title: '1930s Radio Cabinet',
+    category: 'restoration',
+    beforeColor: '#5F4F42',
+    afterColor: '#8A7862',
+    description: 'Veneer repair, missing trim replication, and lacquer restoration.',
+  },
+  {
+    title: 'Chesterfield Sofa',
+    category: 'upholstery',
+    beforeColor: '#4B3E34',
+    afterColor: '#6B5E54',
+    description: 'Full leather reupholstery with hand-tufted buttons and new springs.',
+  },
+  {
+    title: 'Cherry Dining Table',
+    category: 'refinishing',
+    beforeColor: '#5D4A3C',
+    afterColor: '#A0725A',
+    description: 'Heat and water damage repaired, refinished with satin lacquer.',
+  },
+  {
+    title: 'Cane-Back Chair Set',
+    category: 'restoration',
+    beforeColor: '#6A5A4D',
+    afterColor: '#8B7B6D',
+    description: 'Hand-woven cane replacement and frame tightening on four chairs.',
+  },
+  {
+    title: 'Velvet Chaise Lounge',
+    category: 'upholstery',
+    beforeColor: '#524540',
+    afterColor: '#7A6D65',
+    description: 'Reupholstered in rich velvet with matching bolster cushion.',
+  },
+  {
+    title: 'Walnut Bookcase',
+    category: 'refinishing',
+    beforeColor: '#4F4238',
+    afterColor: '#8A6F55',
+    description: 'Shelves repaired, entire unit stripped and refinished in dark walnut.',
+  },
+];
+---
+
+<Layout
+  title="Restoration Portfolio | ARED Furniture Repair"
+  description="See before and after examples of our furniture restoration, upholstery, and refinishing work. Serving the DFW metroplex since 1980."
+  canonicalPath="/portfolio/"
+  breadcrumbs={[{ name: 'Portfolio', url: '/portfolio/' }]}
+>
+  <!-- Page Header -->
+  <section class="bg-wood texture-wood py-16 md:py-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-3">Portfolio</p>
+      <h1 class="font-serif text-4xl md:text-5xl text-cream font-bold">Our Work</h1>
+      <p class="mt-4 text-cream/70 text-lg max-w-2xl">
+        Every piece tells a story. Browse our restoration projects to see the level of care and
+        craftsmanship we bring to each one.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter & Gallery -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Category Filters -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12" id="portfolio-filters">
+        <button
+          class="filter-btn active px-5 py-2 rounded-sm text-sm font-medium border border-gold/20 transition-all cursor-pointer bg-wood text-cream"
+          data-filter="all"
+        >
+          All Projects
+        </button>
+        <button
+          class="filter-btn px-5 py-2 rounded-sm text-sm font-medium border border-gold/20 transition-all cursor-pointer bg-cream text-charcoal hover:border-gold hover:text-gold"
+          data-filter="restoration"
+        >
+          Restoration
+        </button>
+        <button
+          class="filter-btn px-5 py-2 rounded-sm text-sm font-medium border border-gold/20 transition-all cursor-pointer bg-cream text-charcoal hover:border-gold hover:text-gold"
+          data-filter="upholstery"
+        >
+          Upholstery
+        </button>
+        <button
+          class="filter-btn px-5 py-2 rounded-sm text-sm font-medium border border-gold/20 transition-all cursor-pointer bg-cream text-charcoal hover:border-gold hover:text-gold"
+          data-filter="refinishing"
+        >
+          Refinishing
+        </button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+        {
+          projects.map((project) => (
+            <GalleryItem
+              title={project.title}
+              category={project.category}
+              beforeColor={project.beforeColor}
+              afterColor={project.afterColor}
+              description={project.description}
+            />
+          ))
+        }
+      </div>
+
+      <!-- No results message -->
+      <p id="no-results" class="hidden text-center text-warm-gray mt-12 text-lg">
+        No projects found in this category.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-cream-dark/50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl md:text-4xl text-wood font-bold">
+        Have a Piece You'd Like Restored?
+      </h2>
+      <div class="ornament mt-4">
+        <div class="ornament-diamond"></div>
+      </div>
+      <p class="mt-4 text-charcoal-light text-lg">
+        Every restoration starts with a conversation. Tell us about your piece and we will provide a
+        free estimate.
+      </p>
+      <div class="mt-8">
+        <a
+          href="/contact/"
+          class="inline-flex items-center justify-center bg-burgundy text-cream px-8 py-4 rounded-sm font-semibold text-lg hover:bg-burgundy-dark transition-colors shadow-md"
+        >
+          Request a Free Estimate
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const noResults = document.getElementById('no-results');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update active button
+      filterBtns.forEach((b) => {
+        b.classList.remove('bg-wood', 'text-cream', 'active');
+        b.classList.add('bg-cream', 'text-charcoal', 'hover:border-gold', 'hover:text-gold');
+      });
+      btn.classList.add('bg-wood', 'text-cream', 'active');
+      btn.classList.remove('bg-cream', 'text-charcoal', 'hover:border-gold', 'hover:text-gold');
+
+      // Filter items
+      let visibleCount = 0;
+      galleryItems.forEach((item) => {
+        const category = item.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          (item as HTMLElement).style.display = '';
+          visibleCount++;
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+
+      // Toggle no-results
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+    });
+  });
+</script>

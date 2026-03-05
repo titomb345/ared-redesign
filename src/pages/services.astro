@@ -1,0 +1,197 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/services/ServiceCard.astro';
+import Button from '../components/ui/Button.astro';
+import { services } from '../data/services';
+
+const faqs = [
+  {
+    question: 'How much does furniture restoration cost?',
+    answer:
+      'Every piece is unique, so pricing depends on the type of repair, materials needed, and the complexity of the work. We provide free estimates after inspecting your piece. As a general range, simple repairs might start around $100, while full antique restorations can run $500-$2,000 or more depending on the scope.',
+  },
+  {
+    question: 'Do you offer free pickup and delivery?',
+    answer:
+      'Yes! We offer free pickup and delivery throughout the Dallas-Fort Worth metroplex. Just give us a call at (214) 682-6371 to schedule a convenient time, and we will come to you.',
+  },
+  {
+    question: 'How long does a typical restoration take?',
+    answer:
+      'Most projects take 2 to 6 weeks depending on the scope of work, drying times for finishes, and our current schedule. Rush services may be available for simple repairs. We will give you a timeline estimate when we assess your piece.',
+  },
+  {
+    question: 'Can you match the original finish on my antique?',
+    answer:
+      'Absolutely. Color and finish matching is one of our core specialties. We use a combination of traditional staining techniques and custom-mixed finishes to match original patinas. Our goal is always to preserve the authentic character of your piece.',
+  },
+  {
+    question: 'Do you work on modern furniture too?',
+    answer:
+      'Yes, we repair and restore all types of furniture, not just antiques. Whether it is a broken dining chair, a sagging sofa, or a scratched coffee table, we can help. We bring the same level of care to every project regardless of age.',
+  },
+  {
+    question: 'What areas do you serve?',
+    answer:
+      'We serve the entire Dallas-Fort Worth metroplex from our shop in Wylie, TX. That includes Dallas, Plano, McKinney, Allen, Frisco, Richardson, Garland, Mesquite, Rowlett, Fort Worth, Arlington, Irving, and all surrounding communities.',
+  },
+];
+
+const serviceSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  'serviceType': 'Furniture Repair and Restoration',
+  'provider': {
+    '@type': 'LocalBusiness',
+    'name': 'ARED Furniture Repair & Antique Restoration',
+  },
+  'areaServed': {
+    '@type': 'City',
+    'name': 'Dallas-Fort Worth',
+  },
+  'hasOfferCatalog': {
+    '@type': 'OfferCatalog',
+    'name': 'Furniture Services',
+    'itemListElement': services.map((service) => ({
+      '@type': 'Offer',
+      'itemOffered': {
+        '@type': 'Service',
+        'name': service.name,
+        'description': service.shortDescription,
+      },
+    })),
+  },
+});
+
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': faqs.map((faq) => ({
+    '@type': 'Question',
+    'name': faq.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': faq.answer,
+    },
+  })),
+});
+
+const combinedSchema = `${serviceSchema}</script><script type="application/ld+json">${faqSchema}`;
+---
+
+<Layout
+  title="Furniture Repair Services | ARED Restoration"
+  description="Antique restoration, custom upholstery, refinishing, and specialty work in DFW. Free pickup and delivery. Call ARED at (214) 682-6371."
+  canonicalPath="/services/"
+  breadcrumbs={[{ name: 'Services', url: '/services/' }]}
+  additionalSchema={combinedSchema}
+>
+  <!-- Page Header -->
+  <section class="bg-wood texture-wood py-16 md:py-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-3">What We Do</p>
+      <h1 class="font-serif text-4xl md:text-5xl text-cream font-bold">Our Restoration Services</h1>
+      <p class="mt-4 text-cream/70 text-lg max-w-2xl">
+        From treasured antiques to everyday furniture, we bring skill, patience, and genuine care to
+        every project. Here is a closer look at what we offer.
+      </p>
+    </div>
+  </section>
+
+  <!-- Free Pickup Banner -->
+  <div class="bg-gold/10 border-b border-gold/20">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-center gap-3 text-center"
+    >
+      <svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+        ></path>
+      </svg>
+      <p class="text-charcoal font-medium">
+        <span class="text-gold font-semibold">Free Pickup & Delivery</span> throughout the Dallas-Fort
+        Worth metroplex
+      </p>
+    </div>
+  </div>
+
+  <!-- Service Details -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {
+        services.map((service, index) => (
+          <ServiceCard
+            name={service.name}
+            slug={service.slug}
+            description={service.longDescription}
+            features={service.features}
+            index={index}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 md:py-24 bg-cream-dark/50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl md:text-4xl text-wood text-center font-bold mb-4">
+        Frequently Asked Questions
+      </h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
+      </div>
+
+      <div class="space-y-6 mt-8">
+        {
+          faqs.map((faq, index) => (
+            <details
+              class="group bg-cream border border-gold/10 rounded-sm reveal"
+              style={`transition-delay: ${index * 50}ms`}
+            >
+              <summary class="flex items-center justify-between cursor-pointer p-6 text-wood font-semibold hover:text-gold transition-colors list-none">
+                <span class="pr-4">{faq.question}</span>
+                <svg
+                  class="w-5 h-5 text-gold flex-shrink-0 transform transition-transform group-open:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+              <div class="px-6 pb-6 text-charcoal-light leading-relaxed border-t border-gold/10 pt-4">
+                {faq.answer}
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl md:text-4xl text-wood font-bold">
+        Have a Piece That Needs Attention?
+      </h2>
+      <p class="mt-4 text-charcoal-light text-lg">
+        Send us a message or give us a call. We would love to hear about your project and provide a
+        free estimate.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/contact/" variant="primary" size="lg">Get a Free Estimate</Button>
+        <Button href="tel:+12146826371" variant="outline" size="lg">Call (214) 682-6371</Button>
+      </div>
+    </div>
+  </section>
+</Layout>

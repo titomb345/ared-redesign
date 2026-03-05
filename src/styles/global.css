@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-wood: #3c2415;
+  --color-wood-light: #5a3a25;
+  --color-wood-dark: #2a1a0e;
+  --color-gold: #b8860b;
+  --color-gold-light: #d4a535;
+  --color-gold-dark: #8b6508;
+  --color-cream: #faf7f2;
+  --color-cream-dark: #f0eae0;
+  --color-charcoal: #2d2a26;
+  --color-charcoal-light: #4a4640;
+  --color-burgundy: #722f37;
+  --color-burgundy-dark: #5a252c;
+  --color-forest: #2d5016;
+  --color-warm-gray: #8b8580;
+
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-charcoal);
+  background-color: var(--color-cream);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* Ornamental divider */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem auto;
+  max-width: 400px;
+}
+
+.ornament::before,
+.ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to var(--direction, right),
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+}
+
+.ornament::before {
+  --direction: right;
+}
+
+.ornament::after {
+  --direction: left;
+}
+
+.ornament-diamond {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* Subtle wood grain texture overlay */
+.texture-wood {
+  position: relative;
+}
+
+.texture-wood::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      80deg,
+      transparent,
+      transparent 40px,
+      rgba(60, 36, 21, 0.03) 40px,
+      rgba(60, 36, 21, 0.03) 41px
+    ),
+    repeating-linear-gradient(
+      82deg,
+      transparent,
+      transparent 65px,
+      rgba(60, 36, 21, 0.02) 65px,
+      rgba(60, 36, 21, 0.02) 66px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Parchment texture */
+.texture-parchment {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(184, 134, 11, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(60, 36, 21, 0.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(184, 134, 11, 0.02) 0%, transparent 50%);
+}
+
+/* Scroll reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--color-wood);
+  color: var(--color-cream);
+  border-radius: 0 0 0.5rem 0.5rem;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(184, 134, 11, 0.25);
+  color: var(--color-charcoal);
+}

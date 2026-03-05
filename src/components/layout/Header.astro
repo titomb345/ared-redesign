@@ -1,0 +1,186 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/services/', label: 'Services' },
+  { href: '/portfolio/', label: 'Portfolio' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+  { href: '/blog/', label: 'Blog' },
+];
+---
+
+<header
+  class="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-gold/20 transition-shadow duration-300"
+  id="site-header"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo / Business Name -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div
+          class="w-10 h-10 md:w-12 md:h-12 bg-wood rounded-sm flex items-center justify-center shadow-md group-hover:bg-wood-light transition-colors"
+        >
+          <span class="text-gold font-serif font-bold text-lg md:text-xl">A</span>
+        </div>
+        <div class="hidden sm:block">
+          <span class="font-serif font-bold text-wood text-lg md:text-xl leading-tight block"
+            >ARED</span
+          >
+          <span class="text-xs text-warm-gray leading-tight block tracking-wide"
+            >Furniture Repair & Restoration</span
+          >
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class={`px-3 py-2 rounded-sm text-sm font-medium transition-colors ${
+                currentPath === link.href || currentPath === link.href.slice(0, -1)
+                  ? 'text-gold bg-wood/5'
+                  : 'text-charcoal hover:text-gold hover:bg-wood/5'
+              }`}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Desktop CTA -->
+      <div class="hidden lg:flex items-center gap-4">
+        <div class="text-right">
+          <span class="block text-xs text-gold font-semibold tracking-wide uppercase"
+            >Free Pickup & Delivery</span
+          >
+          <a
+            href="tel:+12146826371"
+            class="text-wood font-semibold hover:text-gold transition-colors">(214) 682-6371</a
+          >
+        </div>
+        <a
+          href="/contact/"
+          class="bg-burgundy text-cream px-5 py-2.5 rounded-sm text-sm font-semibold hover:bg-burgundy-dark transition-colors shadow-md"
+        >
+          Get a Quote
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="lg:hidden p-2 text-charcoal hover:text-gold transition-colors"
+        id="mobile-menu-btn"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg
+          class="w-6 h-6"
+          id="menu-icon-open"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg
+          class="w-6 h-6 hidden"
+          id="menu-icon-close"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden bg-cream border-t border-gold/20 shadow-lg"
+    role="navigation"
+    aria-label="Mobile navigation"
+  >
+    <div class="px-4 py-6 space-y-1">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={`block px-4 py-3 rounded-sm text-base font-medium transition-colors ${
+              currentPath === link.href || currentPath === link.href.slice(0, -1)
+                ? 'text-gold bg-wood/5'
+                : 'text-charcoal hover:text-gold hover:bg-wood/5'
+            }`}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <div class="pt-4 mt-4 border-t border-gold/20">
+        <p class="text-xs text-gold font-semibold tracking-wide uppercase mb-1 px-4">
+          Free Pickup & Delivery
+        </p>
+        <a href="tel:+12146826371" class="block px-4 py-2 text-wood font-semibold text-lg"
+          >(214) 682-6371</a
+        >
+        <a
+          href="/contact/"
+          class="block mt-3 mx-4 text-center bg-burgundy text-cream px-5 py-3 rounded-sm font-semibold hover:bg-burgundy-dark transition-colors"
+        >
+          Get a Quote
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (menuBtn && mobileMenu && iconOpen && iconClose) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+
+      if (isOpen) {
+        mobileMenu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        mobileMenu.classList.remove('hidden');
+        iconOpen.classList.add('hidden');
+        iconClose.classList.remove('hidden');
+        menuBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
+
+  // Add shadow on scroll
+  const header = document.getElementById('site-header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.classList.add('shadow-md');
+      } else {
+        header.classList.remove('shadow-md');
+      }
+    });
+  }
+</script>

@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/contact/ContactForm.astro';
+import { serviceAreas } from '../data/services';
+---
+
+<Layout
+  title="Contact ARED | Free Furniture Repair Estimate"
+  description="Get a free estimate for furniture repair and antique restoration. Call (214) 682-6371 or visit our Wylie, TX workshop. Free pickup and delivery in DFW."
+  canonicalPath="/contact/"
+  breadcrumbs={[{ name: 'Contact', url: '/contact/' }]}
+>
+  <!-- Page Header -->
+  <section class="bg-wood texture-wood py-16 md:py-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-3">Let's Connect</p>
+      <h1 class="font-serif text-4xl md:text-5xl text-cream font-bold">Get in Touch</h1>
+      <p class="mt-4 text-cream/70 text-lg max-w-2xl">
+        Ready to bring your furniture back to life? We provide free estimates and free pickup and
+        delivery throughout the DFW metroplex.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Content -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <!-- Contact Form -->
+        <div class="lg:col-span-3 reveal">
+          <h2 class="font-serif text-2xl text-wood mb-6">Send Us a Message</h2>
+          <p class="text-charcoal-light mb-8">
+            Tell us about your piece and the type of work you need. We will get back to you within
+            one business day with an estimate.
+          </p>
+          <ContactForm />
+        </div>
+
+        <!-- Contact Info Sidebar -->
+        <div class="lg:col-span-2 space-y-8 reveal" style="transition-delay: 150ms">
+          <!-- Phone -->
+          <div class="bg-cream-dark/50 border border-gold/10 rounded-sm p-6">
+            <h3 class="font-serif text-lg text-wood mb-3">Call Us</h3>
+            <a
+              href="tel:+12146826371"
+              class="text-2xl font-bold text-gold hover:text-gold-dark transition-colors"
+            >
+              (214) 682-6371
+            </a>
+            <p class="text-sm text-charcoal-light mt-2">
+              Give us a call to discuss your project or schedule a pickup.
+            </p>
+          </div>
+
+          <!-- Hours -->
+          <div class="bg-cream-dark/50 border border-gold/10 rounded-sm p-6">
+            <h3 class="font-serif text-lg text-wood mb-3">Business Hours</h3>
+            <ul class="space-y-2 text-sm">
+              <li class="flex justify-between">
+                <span class="text-charcoal-light">Monday - Friday</span>
+                <span class="text-charcoal font-medium">9:00 AM - 5:00 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-charcoal-light">Saturday</span>
+                <span class="text-charcoal font-medium">9:00 AM - 3:30 PM</span>
+              </li>
+              <li class="flex justify-between">
+                <span class="text-charcoal-light">Sunday</span>
+                <span class="text-charcoal font-medium">Closed</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Address -->
+          <div class="bg-cream-dark/50 border border-gold/10 rounded-sm p-6">
+            <h3 class="font-serif text-lg text-wood mb-3">Visit Our Workshop</h3>
+            <address class="not-italic text-charcoal-light text-sm leading-relaxed">
+              10 Regency Dr Bldg B<br />
+              Wylie, TX 75098
+            </address>
+            <a
+              href="https://maps.google.com/?q=10+Regency+Dr+Bldg+B+Wylie+TX+75098"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-gold text-sm font-medium mt-3 hover:text-gold-dark transition-colors"
+            >
+              Get Directions
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                ></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Free Pickup -->
+          <div class="bg-gold/10 border border-gold/20 rounded-sm p-6">
+            <div class="flex items-start gap-3">
+              <svg
+                class="w-6 h-6 text-gold flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                ></path>
+              </svg>
+              <div>
+                <h3 class="font-semibold text-wood">Free Pickup & Delivery</h3>
+                <p class="text-sm text-charcoal-light mt-1">
+                  We pick up and deliver furniture at no additional charge throughout the
+                  Dallas-Fort Worth area. Just call to schedule.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Maps Placeholder -->
+  <section class="border-t border-gold/10">
+    <div class="bg-cream-dark/50 aspect-[16/6] flex items-center justify-center">
+      <div class="text-center text-warm-gray">
+        <svg
+          class="w-12 h-12 mx-auto mb-3 opacity-40"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+          ></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+        <p class="text-sm">Google Maps Embed<br />10 Regency Dr Bldg B, Wylie, TX 75098</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl text-wood mb-4 reveal">Our Service Area</h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
+      </div>
+      <p class="text-charcoal-light mt-6 mb-8 reveal">
+        We proudly serve the entire Dallas-Fort Worth metroplex with free pickup and delivery. Here
+        are some of the cities we regularly service:
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 reveal">
+        {
+          serviceAreas.map((city) => (
+            <span class="bg-cream-dark/70 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal">
+              {city}
+            </span>
+          ))
+        }
+      </div>
+      <p class="text-sm text-warm-gray mt-6 reveal">
+        Don't see your city? Give us a call. We likely serve your area too.
+      </p>
+    </div>
+  </section>
+</Layout>
