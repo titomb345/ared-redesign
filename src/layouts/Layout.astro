@@ -11,6 +11,7 @@ interface Props {
   ogImage?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
   additionalSchema?: string | string[];
+  noindex?: boolean;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   ogImage = '/og-default.svg',
   breadcrumbs = [],
   additionalSchema = [],
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = 'https://aredrepair.com';
@@ -111,6 +113,7 @@ const breadcrumbSchema =
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Favicons -->
