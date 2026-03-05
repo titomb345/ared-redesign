@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<Layout
+  title="Page Not Found | ARED Furniture Repair"
+  description="The page you are looking for could not be found. Browse our furniture repair services or contact us for a free estimate."
+  noindex={true}
+>
+  <section class="py-24 md:py-36">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="w-20 h-20 mx-auto bg-wood/5 rounded-full flex items-center justify-center mb-8">
+        <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+      <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-3">Error 404</p>
+      <h1 class="font-serif text-4xl md:text-5xl text-wood font-bold">Page Not Found</h1>
+      <div class="ornament mt-6">
+        <div class="ornament-diamond"></div>
+      </div>
+      <p class="mt-6 text-lg text-charcoal-light leading-relaxed">
+        The page you are looking for may have been moved or no longer exists. Let us help you find
+        what you need.
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/" variant="primary" size="lg">Back to Home</Button>
+        <Button href="/contact/" variant="outline" size="lg">Contact Us</Button>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+        <a
+          href="/services/"
+          class="p-6 bg-cream-dark/50 border border-gold/10 rounded-sm hover:border-gold/30 transition-colors group"
+        >
+          <h2 class="font-serif text-lg text-wood group-hover:text-gold transition-colors">
+            Our Services
+          </h2>
+          <p class="text-sm text-charcoal-light mt-1">
+            Restoration, upholstery, refinishing, and more.
+          </p>
+        </a>
+        <a
+          href="/portfolio/"
+          class="p-6 bg-cream-dark/50 border border-gold/10 rounded-sm hover:border-gold/30 transition-colors group"
+        >
+          <h2 class="font-serif text-lg text-wood group-hover:text-gold transition-colors">
+            Portfolio
+          </h2>
+          <p class="text-sm text-charcoal-light mt-1">
+            See before and after examples of our work.
+          </p>
+        </a>
+        <a
+          href="/about/"
+          class="p-6 bg-cream-dark/50 border border-gold/10 rounded-sm hover:border-gold/30 transition-colors group"
+        >
+          <h2 class="font-serif text-lg text-wood group-hover:text-gold transition-colors">
+            About ARED
+          </h2>
+          <p class="text-sm text-charcoal-light mt-1">
+            Family-owned craftsmanship since 1980.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
