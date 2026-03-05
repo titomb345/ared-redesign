@@ -76,7 +76,7 @@ const faqSchema = JSON.stringify({
   })),
 });
 
-const combinedSchema = `${serviceSchema}</script><script type="application/ld+json">${faqSchema}`;
+const schemas = [serviceSchema, faqSchema];
 ---
 
 <Layout
@@ -84,7 +84,7 @@ const combinedSchema = `${serviceSchema}</script><script type="application/ld+js
   description="Antique restoration, custom upholstery, refinishing, and specialty work in DFW. Free pickup and delivery. Call ARED at (214) 682-6371."
   canonicalPath="/services/"
   breadcrumbs={[{ name: 'Services', url: '/services/' }]}
-  additionalSchema={combinedSchema}
+  additionalSchema={schemas}
 >
   <!-- Page Header -->
   <section class="bg-wood texture-wood py-16 md:py-24">

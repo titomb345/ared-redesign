@@ -10,7 +10,7 @@ interface Props {
   ogType?: string;
   ogImage?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
-  additionalSchema?: string;
+  additionalSchema?: string | string[];
 }
 
 const {
@@ -20,7 +20,7 @@ const {
   ogType = 'website',
   ogImage = '/og-default.svg',
   breadcrumbs = [],
-  additionalSchema = '',
+  additionalSchema = [],
 } = Astro.props;
 
 const siteUrl = 'https://aredrepair.com';
@@ -139,7 +139,10 @@ const breadcrumbSchema =
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={localBusinessSchema} />
     {breadcrumbSchema && <script type="application/ld+json" set:html={breadcrumbSchema} />}
-    {additionalSchema && <script type="application/ld+json" set:html={additionalSchema} />}
+    {Array.isArray(additionalSchema)
+      ? additionalSchema.map((schema) => <script type="application/ld+json" set:html={schema} />)
+      : additionalSchema && <script type="application/ld+json" set:html={additionalSchema} />
+    }
   </head>
   <body class="min-h-screen flex flex-col texture-parchment">
     <a href="#main-content" class="skip-link">Skip to content</a>
