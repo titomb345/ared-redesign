@@ -1,12 +1,22 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const posts = [
+  {
+    title: 'When to Restore vs. Replace Antique Furniture: A Wylie Craftsman\'s Honest Take',
+    slug: 'restoring-antique-furniture-wylie-tx',
+    date: '2025-02-18',
+    description:
+      'A third-generation furniture restorer shares practical advice on when antique furniture is worth restoring and when it might be time to let go. Real talk from 40+ years in the shop.',
+    readTime: '8 min read',
+  },
+];
 ---
 
 <Layout
   title="Restoration Blog | ARED Furniture Repair"
   description="Tips, stories, and insights about furniture restoration, antique care, and wood finishing from the craftsmen at ARED in Wylie, TX."
   canonicalPath="/blog/"
-  noindex={true}
   breadcrumbs={[{ name: 'Blog', url: '/blog/' }]}
 >
   <!-- Page Header -->
@@ -15,55 +25,55 @@ import Layout from '../../layouts/Layout.astro';
       <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-3">From the Workshop</p>
       <h1 class="font-serif text-4xl md:text-5xl text-cream font-bold">Restoration Blog</h1>
       <p class="mt-4 text-cream/70 text-lg max-w-2xl">
-        Stories and insights from decades of working with wood, fabric, and finish.
+        Stories, advice, and insights from decades of working with wood, fabric, and finish.
       </p>
     </div>
   </section>
 
-  <!-- Coming Soon Content -->
-  <section class="py-24 md:py-36">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="w-20 h-20 mx-auto bg-wood/5 rounded-full flex items-center justify-center mb-8">
-        <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-          ></path>
-        </svg>
-      </div>
-      <h2 class="font-serif text-3xl text-wood mb-4">Coming Soon</h2>
-      <div class="ornament">
-        <div class="ornament-diamond"></div>
-      </div>
-      <p class="mt-6 text-lg text-charcoal-light leading-relaxed">
-        We are working on sharing our restoration knowledge, project stories, and furniture care
-        tips. Check back soon for articles on topics like caring for antique wood finishes, choosing
-        the right upholstery fabric, and recognizing quality craftsmanship.
-      </p>
-      <p class="mt-4 text-charcoal-light">
-        In the meantime, feel free to <a
-          href="/contact/"
-          class="text-gold font-semibold hover:text-gold-dark transition-colors underline underline-offset-4"
-          >reach out</a
-        > with any furniture questions. We are always happy to help.
-      </p>
-
-      <div class="mt-12">
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 text-gold font-semibold hover:text-gold-dark transition-colors"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 16l-4-4m0 0l4-4m-4 4h18"></path></svg
+  <!-- Blog Posts -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="space-y-10">
+        {posts.map((post) => (
+          <a
+            href={`/blog/${post.slug}/`}
+            class="block group bg-cream-dark/40 border border-gold/10 rounded-sm p-8 md:p-10 hover:border-gold/25 hover:shadow-lg transition-all"
           >
-          Back to Home
-        </a>
+            <div class="flex items-center gap-3 text-sm text-warm-gray mb-4">
+              <time datetime={post.date}>
+                {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+              <span>&bull;</span>
+              <span>{post.readTime}</span>
+            </div>
+            <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold group-hover:text-gold transition-colors">
+              {post.title}
+            </h2>
+            <p class="mt-3 text-charcoal-light leading-relaxed">
+              {post.description}
+            </p>
+            <span class="inline-flex items-center gap-1 mt-5 text-gold text-sm font-semibold group-hover:gap-2 transition-all">
+              Read more
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <!-- More coming note -->
+      <div class="mt-16 text-center">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <p class="mt-6 text-charcoal-light">
+          More articles on furniture care, restoration tips, and workshop stories coming soon.
+          Have a question?
+          <a href="/contact/" class="text-gold font-semibold hover:text-gold-dark transition-colors underline underline-offset-4">
+            Ask us directly.
+          </a>
+        </p>
       </div>
     </div>
   </section>

@@ -56,6 +56,7 @@ export const services: Service[] = [
       'Hand-rubbed oil and wax finishes',
       'Lacquer and polyurethane topcoats',
       'Water ring and heat damage repair',
+      'Veneer repair for scratches, lifting, and missing sections',
     ],
     icon: 'M7 14c-1.66 0-3-1.34-3-3 0-1.31.84-2.41 2-2.83V3h8v5.17c1.16.42 2 1.52 2 2.83 0 1.66-1.34 3-3 3H7z',
   },

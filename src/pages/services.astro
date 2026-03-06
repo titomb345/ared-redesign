@@ -31,6 +31,11 @@ const faqs = [
       'Yes, we repair and restore all types of furniture, not just antiques. Whether it is a broken dining chair, a sagging sofa, or a scratched coffee table, we can help. We bring the same level of care to every project regardless of age.',
   },
   {
+    question: 'Do you work with insurance claims for damaged furniture?',
+    answer:
+      'Yes. If your furniture has been damaged in a move, flood, or other covered event, we can help. We work with customers on insurance claims and can provide documentation and estimates that reflect the true restoration cost of your piece. In our experience, claims adjusters sometimes undervalue what it takes to properly restore quality furniture, and we are happy to help you make the case for what your piece is really worth.',
+  },
+  {
     question: 'What areas do you serve?',
     answer:
       'We serve the entire Dallas-Fort Worth metroplex from our shop in Wylie, TX. That includes Dallas, Plano, McKinney, Allen, Frisco, Richardson, Garland, Mesquite, Rowlett, Fort Worth, Arlington, Irving, and all surrounding communities.',
@@ -93,7 +98,9 @@ const schemas = [serviceSchema, faqSchema];
       <h1 class="font-serif text-4xl md:text-5xl text-cream font-bold">Our Restoration Services</h1>
       <p class="mt-4 text-cream/70 text-lg max-w-2xl">
         From treasured antiques to everyday furniture, we bring skill, patience, and genuine care to
-        every project. Here is a closer look at what we offer.
+        every project. If you have always loved the look of antique furniture but thought you could
+        not afford it, we can help. We restore pieces to their original beauty, and in some cases,
+        we can even alter less expensive furniture to create an antique, one-of-a-kind look.
       </p>
     </div>
   </section>
@@ -135,6 +142,74 @@ const schemas = [serviceSchema, faqSchema];
     </div>
   </section>
 
+  <!-- Bold Promise -->
+  <section class="py-12 md:py-16 bg-wood texture-wood">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="font-serif text-2xl md:text-3xl text-cream italic leading-relaxed">
+        "Welding, caning, rush work, custom carvings, hand waxing, gold leaf, French polishing
+        &mdash; if it involves furniture, there is nothing we will not take on. Bring us your
+        project and let us show you what we can do."
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Process -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl md:text-4xl text-wood text-center font-bold mb-4">
+        How It Works
+      </h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
+      </div>
+      <p class="text-center text-charcoal-light mt-6 mb-12 max-w-2xl mx-auto">
+        From your first call to the moment your restored piece is back home, here is what to expect.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
+            <span class="font-serif text-xl text-gold font-bold">1</span>
+          </div>
+          <h3 class="font-serif text-lg text-wood mb-2">Free Consultation</h3>
+          <p class="text-sm text-charcoal-light leading-relaxed">
+            Call us or send a message. Describe your piece and the work you need, and we will give you an honest assessment and estimate.
+          </p>
+        </div>
+
+        <div class="text-center reveal" style="transition-delay: 100ms">
+          <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
+            <span class="font-serif text-xl text-gold font-bold">2</span>
+          </div>
+          <h3 class="font-serif text-lg text-wood mb-2">Free Pickup</h3>
+          <p class="text-sm text-charcoal-light leading-relaxed">
+            We come to you. Our team picks up your furniture anywhere in the DFW metroplex at no extra charge.
+          </p>
+        </div>
+
+        <div class="text-center reveal" style="transition-delay: 200ms">
+          <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
+            <span class="font-serif text-xl text-gold font-bold">3</span>
+          </div>
+          <h3 class="font-serif text-lg text-wood mb-2">Expert Restoration</h3>
+          <p class="text-sm text-charcoal-light leading-relaxed">
+            Your piece gets the full attention of our craftsmen. We keep you updated on progress and timing throughout the project.
+          </p>
+        </div>
+
+        <div class="text-center reveal" style="transition-delay: 300ms">
+          <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
+            <span class="font-serif text-xl text-gold font-bold">4</span>
+          </div>
+          <h3 class="font-serif text-lg text-wood mb-2">Free Delivery</h3>
+          <p class="text-sm text-charcoal-light leading-relaxed">
+            Once complete, we deliver your restored furniture right back to your door, ready to enjoy for years to come.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ Section -->
   <section class="py-16 md:py-24 bg-cream-dark/50">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,13 +224,12 @@ const schemas = [serviceSchema, faqSchema];
         {
           faqs.map((faq, index) => (
             <details
-              class="group bg-cream border border-gold/10 rounded-sm reveal"
-              style={`transition-delay: ${index * 50}ms`}
+              class="group bg-cream border border-gold/10 rounded-sm"
             >
               <summary class="flex items-center justify-between cursor-pointer p-6 text-wood font-semibold hover:text-gold transition-colors list-none">
                 <span class="pr-4">{faq.question}</span>
                 <svg
-                  class="w-5 h-5 text-gold flex-shrink-0 transform transition-transform group-open:rotate-180"
+                  class="w-5 h-5 text-gold flex-shrink-0 transform transition-transform duration-250 group-open:rotate-180"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -168,8 +242,12 @@ const schemas = [serviceSchema, faqSchema];
                   />
                 </svg>
               </summary>
-              <div class="px-6 pb-6 text-charcoal-light leading-relaxed border-t border-gold/10 pt-4">
-                {faq.answer}
+              <div class="faq-content">
+                <div class="faq-inner">
+                  <div class="px-6 pb-6 text-charcoal-light leading-relaxed border-t border-gold/10 pt-4">
+                    {faq.answer}
+                  </div>
+                </div>
               </div>
             </details>
           ))
@@ -195,3 +273,26 @@ const schemas = [serviceSchema, faqSchema];
     </div>
   </section>
 </Layout>
+
+<script>
+  // Animate FAQ close — prevent instant snap by holding `open` until transition ends
+  document.querySelectorAll('details').forEach((detail) => {
+    const content = detail.querySelector('.faq-content');
+    if (!content) return;
+
+    detail.querySelector('summary')!.addEventListener('click', (e) => {
+      if (!detail.open) return; // opening is handled by CSS alone
+      e.preventDefault();
+      content.addEventListener('transitionend', () => detail.removeAttribute('open'), { once: true });
+      // Force the closing style by removing open visually
+      (content as HTMLElement).style.gridTemplateRows = '0fr';
+    });
+
+    // Reset inline style when opened so CSS takes over
+    detail.addEventListener('toggle', () => {
+      if (detail.open) {
+        (content as HTMLElement).style.gridTemplateRows = '';
+      }
+    });
+  });
+</script>

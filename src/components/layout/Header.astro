@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../../assets/images/logo.png';
+
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
@@ -6,7 +9,6 @@ const navLinks = [
   { href: '/portfolio/', label: 'Portfolio' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
-  { href: '/blog/', label: 'Blog' },
 ];
 ---
 
@@ -18,19 +20,13 @@ const navLinks = [
     <div class="flex items-center justify-between h-16 md:h-20">
       <!-- Logo / Business Name -->
       <a href="/" class="flex items-center gap-3 group">
-        <div
-          class="w-10 h-10 md:w-12 md:h-12 bg-wood rounded-sm flex items-center justify-center shadow-md group-hover:bg-wood-light transition-colors"
-        >
-          <span class="text-gold font-serif font-bold text-lg md:text-xl">A</span>
-        </div>
-        <div class="hidden sm:block">
-          <span class="font-serif font-bold text-wood text-lg md:text-xl leading-tight block"
-            >ARED</span
-          >
-          <span class="text-xs text-warm-gray leading-tight block tracking-wide"
-            >Furniture Repair & Restoration</span
-          >
-        </div>
+        <Image
+          src={logo}
+          alt="ARED Furniture Repair & Antique Restoration"
+          width={140}
+          height={80}
+          class="h-10 md:h-12 w-auto"
+        />
       </a>
 
       <!-- Desktop Navigation -->
@@ -111,7 +107,8 @@ const navLinks = [
   <!-- Mobile Menu -->
   <div
     id="mobile-menu"
-    class="lg:hidden hidden bg-cream border-t border-gold/20 shadow-lg"
+    class="lg:hidden bg-cream border-t border-gold/20 shadow-lg overflow-hidden transition-all duration-300 ease-out"
+    style="max-height: 0;"
     role="navigation"
     aria-label="Mobile navigation"
   >
@@ -150,25 +147,35 @@ const navLinks = [
 
 <script>
   const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement;
   const iconOpen = document.getElementById('menu-icon-open');
   const iconClose = document.getElementById('menu-icon-close');
 
-  if (menuBtn && mobileMenu && iconOpen && iconClose) {
-    menuBtn.addEventListener('click', () => {
-      const isOpen = !mobileMenu.classList.contains('hidden');
+  function closeMenu() {
+    if (!mobileMenu || !iconOpen || !iconClose || !menuBtn) return;
+    mobileMenu.style.maxHeight = '0';
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
 
-      if (isOpen) {
-        mobileMenu.classList.add('hidden');
-        iconOpen.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      } else {
-        mobileMenu.classList.remove('hidden');
-        iconOpen.classList.add('hidden');
-        iconClose.classList.remove('hidden');
-        menuBtn.setAttribute('aria-expanded', 'true');
-      }
+  function openMenu() {
+    if (!mobileMenu || !iconOpen || !iconClose || !menuBtn) return;
+    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+    iconOpen.classList.add('hidden');
+    iconClose.classList.remove('hidden');
+    menuBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = menuBtn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) closeMenu(); else openMenu();
+    });
+
+    // Close menu when a nav link is clicked
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
     });
   }
 

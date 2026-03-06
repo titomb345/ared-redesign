@@ -1,93 +1,119 @@
 ---
+import { Image, getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import GalleryItem from '../components/portfolio/GalleryItem.astro';
+import Lightbox from '../components/portfolio/Lightbox.astro';
 
-const projects = [
-  {
-    title: 'Victorian Settee',
-    category: 'restoration',
-    beforeColor: '#6B5B4F',
-    afterColor: '#8B6F47',
-    description: 'Full structural restoration and finish renewal of an 1880s Victorian settee.',
-  },
-  {
-    title: 'Mid-Century Dining Chairs',
-    category: 'upholstery',
-    beforeColor: '#5A4A3E',
-    afterColor: '#7B6B5F',
-    description: 'Set of six chairs reupholstered with premium woven fabric and new foam.',
-  },
-  {
-    title: 'Oak Farm Table',
-    category: 'refinishing',
-    beforeColor: '#4D4035',
-    afterColor: '#9B8570',
-    description: 'Water-damaged tabletop stripped, sanded, stained, and sealed with polyurethane.',
-  },
-  {
-    title: 'Antique Rocking Chair',
-    category: 'restoration',
-    beforeColor: '#5C4A3A',
-    afterColor: '#9B7B5A',
-    description: 'Loose joints re-glued, broken spindle replaced, and hand-rubbed oil finish.',
-  },
-  {
-    title: 'Wingback Armchair',
-    category: 'upholstery',
-    beforeColor: '#554840',
-    afterColor: '#857565',
-    description: 'Complete tear-down and reupholstery with decorative nailhead trim.',
-  },
-  {
-    title: 'Mahogany Secretary Desk',
-    category: 'refinishing',
-    beforeColor: '#4A3F35',
-    afterColor: '#7D6B5A',
-    description: 'Stripped, color-matched, and French polished to restore original luster.',
-  },
-  {
-    title: '1930s Radio Cabinet',
-    category: 'restoration',
-    beforeColor: '#5F4F42',
-    afterColor: '#8A7862',
-    description: 'Veneer repair, missing trim replication, and lacquer restoration.',
-  },
-  {
-    title: 'Chesterfield Sofa',
-    category: 'upholstery',
-    beforeColor: '#4B3E34',
-    afterColor: '#6B5E54',
-    description: 'Full leather reupholstery with hand-tufted buttons and new springs.',
-  },
-  {
-    title: 'Cherry Dining Table',
-    category: 'refinishing',
-    beforeColor: '#5D4A3C',
-    afterColor: '#A0725A',
-    description: 'Heat and water damage repaired, refinished with satin lacquer.',
-  },
-  {
-    title: 'Cane-Back Chair Set',
-    category: 'restoration',
-    beforeColor: '#6A5A4D',
-    afterColor: '#8B7B6D',
-    description: 'Hand-woven cane replacement and frame tightening on four chairs.',
-  },
-  {
-    title: 'Velvet Chaise Lounge',
-    category: 'upholstery',
-    beforeColor: '#524540',
-    afterColor: '#7A6D65',
-    description: 'Reupholstered in rich velvet with matching bolster cushion.',
-  },
-  {
-    title: 'Walnut Bookcase',
-    category: 'refinishing',
-    beforeColor: '#4F4238',
-    afterColor: '#8A6F55',
-    description: 'Shelves repaired, entire unit stripped and refinished in dark walnut.',
-  },
+// Featured completed pieces (showroom/delivery photos)
+import chesterfieldSofa from '../assets/images/portfolio/gallery/IMG_3183.jpeg';
+import vanityMirror from '../assets/images/portfolio/gallery/IMG_3187.jpeg';
+import diningSet from '../assets/images/portfolio/gallery/IMG_3192.jpeg';
+import dropLeafTable from '../assets/images/portfolio/gallery/IMG_0811.jpeg';
+import diningTableSideboard from '../assets/images/portfolio/gallery/IMG_3695.jpeg';
+
+// Before & after gallery
+import chestOfDrawers from '../assets/images/portfolio/gallery/AMZJ8739.jpeg';
+import bedFrame from '../assets/images/portfolio/gallery/GKIA8255.jpeg';
+import bookcase from '../assets/images/portfolio/gallery/UCUU2076.jpeg';
+import rollTopDesk from '../assets/images/portfolio/gallery/CINQ5305.jpeg';
+import caneChairs from '../assets/images/portfolio/gallery/FZGE7920.jpeg';
+import antiqueTrunk from '../assets/images/portfolio/gallery/FYTV5234.jpeg';
+import pedestalTable from '../assets/images/portfolio/gallery/FYQJ3797.jpeg';
+import asiaCabinet from '../assets/images/portfolio/gallery/HYOI8905.jpeg';
+import singerSewingTable from '../assets/images/portfolio/gallery/IPAQ5469.jpeg';
+import jelly from '../assets/images/portfolio/gallery/PIVD1517.jpeg';
+import victorianChair from '../assets/images/portfolio/gallery/TBVF1770.jpeg';
+import victorianSettee from '../assets/images/portfolio/gallery/ROTP7722.jpeg';
+
+// Recent projects (2024)
+import tableRefinish from '../assets/images/portfolio/gallery/image0.jpeg';
+import dresserRefinish from '../assets/images/portfolio/gallery/image1.jpeg';
+import chairCaning from '../assets/images/portfolio/gallery/image2.jpeg';
+import caneChairRepair from '../assets/images/portfolio/gallery/image2-1.jpeg';
+import sideTableRestore from '../assets/images/portfolio/gallery/image3.jpeg';
+import phonographCabinet from '../assets/images/portfolio/gallery/image3-1.jpeg';
+import diningTableRefinish from '../assets/images/portfolio/gallery/image4.jpeg';
+import captainChair from '../assets/images/portfolio/gallery/image4-1.jpeg';
+import armchairUpholstery from '../assets/images/portfolio/gallery/image5.jpeg';
+import caneArmChairs from '../assets/images/portfolio/gallery/image5-1.jpeg';
+import singerDeskRestore from '../assets/images/portfolio/gallery/image0-1.jpeg';
+
+// Existing portfolio images
+import singerTable from '../assets/images/portfolio/refurbishing-furniture.jpg';
+import cabinetRestore from '../assets/images/portfolio/furniture-upholstery.jpg';
+import diningTableChairs from '../assets/images/portfolio/furniture-refinishing.jpg';
+import victorianParlor from '../assets/images/portfolio/couch-repair.jpg';
+import upholsteryWork from '../assets/images/portfolio/furniture-repair-dfw.jpg';
+import chairFrameWork from '../assets/images/portfolio/furniture-repair-dallas.jpg';
+import vintageMantel from '../assets/images/portfolio/vintage-furniture.jpg';
+import sofaTearDown from '../assets/images/portfolio/furniture-restorations.jpg';
+import refinishBrush from '../assets/images/portfolio/antique-refurbisher.png';
+import arnoldExpert from '../assets/images/portfolio/antique-experts.jpg';
+import stuffingWork from '../assets/images/portfolio/furniture-refurbish.png';
+import deliveryVan from '../assets/images/portfolio/antique-repair-restoration.jpg';
+
+const featured = [
+  { image: chesterfieldSofa, title: 'Chesterfield Sofa & Ottomans', alt: 'Restored leather Chesterfield sofa with matching ottomans in a living room' },
+  { image: vanityMirror, title: 'Antique Vanity with Mirror', alt: 'Restored antique serpentine vanity dresser with ornate tilting mirror' },
+  { image: diningSet, title: 'Dining Table & Shield-Back Chairs', alt: 'Refinished dining table with shield-back chairs and upholstered seats' },
+  { image: dropLeafTable, title: 'Drop-Leaf Table Refinishing', alt: 'Refinished dark oak drop-leaf table on a patio' },
+  { image: diningTableSideboard, title: 'Dining Room Set Restoration', alt: 'Restored formal dining table with sideboard and reupholstered chairs' },
 ];
+
+const gallery = [
+  // Before & after pairs - the real selling point
+  { image: chestOfDrawers, title: 'Antique Chest of Drawers', alt: 'Before and after restoration of an ornate antique chest of drawers', category: 'restoration' },
+  { image: bedFrame, title: 'Antique Bed Frame', alt: 'Before and after restoration of a carved antique bed frame with rails', category: 'restoration' },
+  { image: bookcase, title: 'Metal Bookcase Restoration', alt: 'Before and after restoration of a vintage metal bookcase', category: 'restoration' },
+  { image: rollTopDesk, title: 'Child\'s Roll-Top Desk', alt: 'Before and after refinishing of a child-size roll-top desk', category: 'refinishing' },
+  { image: caneChairs, title: 'Cane Chair Repair', alt: 'Before and after cane seat replacement on antique chairs', category: 'restoration' },
+  { image: antiqueTrunk, title: 'Antique Trunk Restoration', alt: 'Before and after restoration of a domed-top antique wooden trunk', category: 'restoration' },
+  { image: pedestalTable, title: 'Pedestal Table Refinishing', alt: 'Before and after refinishing of a large pedestal dining table', category: 'refinishing' },
+  { image: asiaCabinet, title: 'Asian-Style Cabinet', alt: 'Before and after restoration of a black lacquer Asian cabinet with brass hardware', category: 'restoration' },
+  { image: singerSewingTable, title: 'Singer Sewing Table & Trunk', alt: 'Before and after restoration of a Singer sewing machine table and antique trunk', category: 'restoration' },
+  { image: jelly, title: 'Jelly Cabinet Restoration', alt: 'Before and after restoration of a vintage jelly cabinet with two-tone finish', category: 'restoration' },
+  { image: victorianChair, title: 'Victorian Chair Reupholstery', alt: 'Before and after reupholstery of a carved Victorian parlor chair', category: 'upholstery' },
+  { image: victorianSettee, title: 'Victorian Settee & Office Chair', alt: 'Before and after reupholstery of a Victorian settee and vintage office chair', category: 'upholstery' },
+  // 2024 projects
+  { image: tableRefinish, title: 'Formal Table Refinishing', alt: 'Before and after refinishing of a formal dining table with carved legs', category: 'refinishing' },
+  { image: dresserRefinish, title: 'Mid-Century Dresser', alt: 'Before and after refinishing of a mid-century louvered dresser from light to dark walnut', category: 'refinishing' },
+  { image: chairCaning, title: 'Antique Chair Caning', alt: 'Before and after cane seat repair on a pressed-back spindle chair', category: 'restoration' },
+  { image: caneChairRepair, title: 'Cane Armchair Repair', alt: 'Before and after cane seat replacement on an antique armchair', category: 'restoration' },
+  { image: sideTableRestore, title: 'Side Table with Magazine Rack', alt: 'Before and after restoration of a turned-leg side table with magazine rack', category: 'restoration' },
+  { image: phonographCabinet, title: 'Phonograph Cabinet', alt: 'Before and after restoration of a vintage phonograph cabinet', category: 'restoration' },
+  { image: diningTableRefinish, title: 'Oval Dining Table', alt: 'Before and after refinishing of a large oval pedestal dining table', category: 'refinishing' },
+  { image: captainChair, title: 'Captain\'s Chair Restoration', alt: 'Before and after restoration and refinishing of a barrel-back captain chair', category: 'restoration' },
+  { image: armchairUpholstery, title: 'Victorian Armchair Reupholstery', alt: 'Before and after reupholstery of a Victorian armchair with floral fabric', category: 'upholstery' },
+  { image: caneArmChairs, title: 'Tufted Cane Armchairs', alt: 'Before and after reupholstery of tufted cane-side armchairs', category: 'upholstery' },
+  { image: singerDeskRestore, title: 'Singer Desk Restoration', alt: 'Before and after restoration of an ornate Singer sewing machine desk', category: 'restoration' },
+  // Existing portfolio images
+  { image: singerTable, title: 'Singer Sewing Table', alt: 'Refurbished antique Singer sewing machine table', category: 'restoration' },
+  { image: cabinetRestore, title: 'Antique Cabinet Revival', alt: 'Restored glass-front antique display cabinet with upholstered chair', category: 'restoration' },
+  { image: diningTableChairs, title: 'Formal Dining Set', alt: 'Refinished formal dining table with Chippendale chairs', category: 'refinishing' },
+  { image: victorianParlor, title: 'Victorian Parlor Chairs', alt: 'Set of restored Victorian parlor chairs with upholstered seats', category: 'upholstery' },
+  { image: upholsteryWork, title: 'Hand-Stitched Upholstery', alt: 'Close-up of hands performing detailed upholstery stitching', category: 'upholstery' },
+  { image: chairFrameWork, title: 'Chair Frame Upholstery', alt: 'Craftsman working on chair frame upholstery restoration in workshop', category: 'upholstery' },
+  { image: vintageMantel, title: 'Vintage Mantel Clock', alt: 'Restored antique mantel clock with gold decorative feet', category: 'restoration' },
+  { image: sofaTearDown, title: 'Sofa Tear-Down & Rebuild', alt: 'Arnold working on a full sofa tear-down for reupholstery', category: 'upholstery' },
+  { image: refinishBrush, title: 'Hand-Applied Finish', alt: 'Close-up of brush applying wood finish to furniture surface', category: 'refinishing' },
+  { image: arnoldExpert, title: 'Expert Inspection', alt: 'Arnold examining upholstery fabric on an antique sofa', category: 'upholstery' },
+  { image: stuffingWork, title: 'Horsehair Padding Restoration', alt: 'Hands working with traditional horsehair stuffing material', category: 'restoration' },
+  { image: deliveryVan, title: 'Free Pickup & Delivery', alt: 'ARED Furniture Repair delivery van at the Wylie TX workshop', category: 'restoration' },
+];
+
+// Pre-generate full-size URLs for the lightbox
+const featuredFullUrls = await Promise.all(
+  featured.map(async (p) => {
+    const full = await getImage({ src: p.image, format: 'webp' });
+    return full.src;
+  })
+);
+
+const galleryFullUrls = await Promise.all(
+  gallery.map(async (p) => {
+    const full = await getImage({ src: p.image, format: 'webp' });
+    return full.src;
+  })
+);
 ---
 
 <Layout
@@ -108,11 +134,62 @@ const projects = [
     </div>
   </section>
 
-  <!-- Filter & Gallery -->
-  <section class="py-16 md:py-24">
+  <!-- Philosophy / Intro -->
+  <section class="py-12 md:py-16 border-b border-gold/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <blockquote class="font-serif text-lg md:text-xl text-charcoal/80 leading-relaxed italic text-center">
+        "We know that in order to understand the value of a piece of furniture, one must first learn to appreciate art, craftsmanship, quality, and the meaning of what it can represent. We pride ourselves in providing only the best service in all that we do, with years of knowledge of exactly what it takes to preserve the value of antiques and bring them back to their original glory."
+      </blockquote>
+      <p class="text-center mt-4 text-warm-gray font-medium text-sm">- Arnold, Founder of ARED</p>
+    </div>
+  </section>
+
+  <!-- Featured Completed Pieces -->
+  <section class="py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold text-center mb-3">Featured Restorations</h2>
+      <div class="ornament mb-10">
+        <div class="ornament-diamond"></div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        {featured.map((project, i) => (
+          <button
+            class="featured-thumb group relative aspect-[3/4] overflow-hidden rounded-sm border border-gold/15 hover:border-gold/40 transition-all cursor-pointer hover:shadow-lg focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
+            aria-label={`View ${project.title}`}
+            data-index={i}
+            data-src={featuredFullUrls[i]}
+            data-alt={project.alt}
+            data-title={project.title}
+          >
+            <Image
+              src={project.image}
+              alt={project.alt}
+              width={300}
+              height={400}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span class="absolute bottom-0 left-0 right-0 px-3 py-2 text-cream text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {project.title}
+            </span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Before & After Gallery -->
+  <section class="py-16 md:py-20 bg-cream-dark/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold text-center mb-3">Before & After Gallery</h2>
+      <div class="ornament mb-8">
+        <div class="ornament-diamond"></div>
+      </div>
+
       <!-- Category Filters -->
-      <div class="flex flex-wrap justify-center gap-3 mb-12" id="portfolio-filters">
+      <div class="flex flex-wrap justify-center gap-3 mb-10" id="portfolio-filters">
         <button
           class="filter-btn active px-5 py-2 rounded-sm text-sm font-medium border border-gold/20 transition-all cursor-pointer bg-wood text-cream"
           data-filter="all"
@@ -140,18 +217,32 @@ const projects = [
       </div>
 
       <!-- Gallery Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
-        {
-          projects.map((project) => (
-            <GalleryItem
-              title={project.title}
-              category={project.category}
-              beforeColor={project.beforeColor}
-              afterColor={project.afterColor}
-              description={project.description}
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="portfolio-grid">
+        {gallery.map((project, i) => (
+          <button
+            class="gallery-thumb gallery-item group relative aspect-square overflow-hidden rounded-sm border border-gold/10 hover:border-gold/30 transition-all cursor-pointer hover:shadow-lg focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-2"
+            data-category={project.category}
+            aria-label={`View ${project.title}`}
+            data-index={i}
+            data-src={galleryFullUrls[i]}
+            data-alt={project.alt}
+            data-title={project.title}
+          >
+            <Image
+              src={project.image}
+              alt={project.alt}
+              width={400}
+              height={400}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
             />
-          ))
-        }
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div class="absolute bottom-0 left-0 right-0 px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="text-cream text-xs font-medium block">{project.title}</span>
+              <span class="text-cream/60 text-[10px] uppercase tracking-wider">{project.category}</span>
+            </div>
+          </button>
+        ))}
       </div>
 
       <!-- No results message -->
@@ -162,7 +253,7 @@ const projects = [
   </section>
 
   <!-- CTA -->
-  <section class="py-16 md:py-24 bg-cream-dark/50">
+  <section class="py-16 md:py-24">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="font-serif text-3xl md:text-4xl text-wood font-bold">
         Have a Piece You'd Like Restored?
@@ -184,7 +275,20 @@ const projects = [
       </div>
     </div>
   </section>
+
+  <Lightbox selector=".featured-thumb" />
+  <Lightbox selector=".gallery-thumb" />
 </Layout>
+
+<style>
+  .gallery-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .gallery-item.hiding {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+</style>
 
 <script>
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -203,15 +307,24 @@ const projects = [
       btn.classList.add('bg-wood', 'text-cream', 'active');
       btn.classList.remove('bg-cream', 'text-charcoal', 'hover:border-gold', 'hover:text-gold');
 
-      // Filter items
+      // Animate out non-matching items, then show matching
       let visibleCount = 0;
       galleryItems.forEach((item) => {
-        const category = item.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          (item as HTMLElement).style.display = '';
+        const el = item as HTMLElement;
+        const category = el.getAttribute('data-category');
+        const matches = filter === 'all' || category === filter;
+
+        if (matches) {
           visibleCount++;
+          el.style.display = '';
+          // Trigger reflow then remove hiding class for fade-in
+          requestAnimationFrame(() => {
+            el.classList.remove('hiding');
+          });
         } else {
-          (item as HTMLElement).style.display = 'none';
+          el.classList.add('hiding');
+          // Hide after transition completes
+          setTimeout(() => { el.style.display = 'none'; }, 300);
         }
       });
 

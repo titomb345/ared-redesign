@@ -1,10 +1,15 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/home/Hero.astro';
 import ServicesPreview from '../components/home/ServicesPreview.astro';
 import Testimonials from '../components/home/Testimonials.astro';
 import CTASection from '../components/home/CTASection.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
+
+import singerTable from '../assets/images/portfolio/refurbishing-furniture.jpg';
+import cabinetRestore from '../assets/images/portfolio/furniture-upholstery.jpg';
+import vintageMantel from '../assets/images/portfolio/vintage-furniture.jpg';
 
 const websiteSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -13,27 +18,27 @@ const websiteSchema = JSON.stringify({
   'url': 'https://aredrepair.com',
 });
 
-const beforeAfterProjects = [
+const featuredProjects = [
   {
-    title: 'Victorian Settee Restoration',
-    beforeColor: '#6B5B4F',
-    afterColor: '#8B6F47',
+    title: 'Singer Sewing Table Restoration',
+    image: singerTable,
+    imageAlt: 'Before and after restoration of an antique Singer sewing machine table',
     description:
-      'Complete structural repair, reupholstery, and finish restoration of a 19th-century settee.',
+      'Complete top replacement and finish restoration on a vintage Singer sewing table.',
   },
   {
-    title: 'Antique Rocking Chair',
-    beforeColor: '#5C4A3A',
-    afterColor: '#9B7B5A',
+    title: 'Antique Cabinet Revival',
+    image: cabinetRestore,
+    imageAlt: 'Before and after restoration of a glass-front antique display cabinet',
     description:
-      'Joint tightening, spindle replacement, and hand-rubbed oil finish on a family heirloom rocker.',
+      'Glass door repair, structural reinforcement, and full finish renewal.',
   },
   {
-    title: '1930s Radio Cabinet',
-    beforeColor: '#4A3F35',
-    afterColor: '#7D6B5A',
+    title: 'Vintage Mantel Clock',
+    image: vintageMantel,
+    imageAlt: 'Restored antique mantel clock with gold decorative feet',
     description:
-      'Veneer repair, color matching, and lacquer restoration on a vintage radio cabinet.',
+      'Clock case refinished, mechanics cleaned and oiled, brass hardware restored.',
   },
 ];
 ---
@@ -57,37 +62,19 @@ const beforeAfterProjects = [
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
         {
-          beforeAfterProjects.map((project, index) => (
+          featuredProjects.map((project, index) => (
             <div
-              class="rounded-sm overflow-hidden border border-gold/10 bg-cream shadow-sm hover:shadow-xl transition-all reveal"
+              class="rounded-sm overflow-hidden border border-gold/10 bg-cream shadow-sm hover:shadow-xl transition-all group reveal"
               style={`transition-delay: ${index * 100}ms`}
             >
-              <div class="relative aspect-[4/3]">
-                <div class="absolute inset-0 flex">
-                  <div
-                    class="w-1/2 flex items-center justify-center text-cream/90 font-serif"
-                    style={`background-color: ${project.beforeColor}`}
-                  >
-                    <div class="text-center px-2">
-                      <span class="block text-xs uppercase tracking-wider opacity-60 mb-1">
-                        Before
-                      </span>
-                      <span class="text-xs opacity-70">Photo Placeholder</span>
-                    </div>
-                  </div>
-                  <div
-                    class="w-1/2 flex items-center justify-center text-cream/90 font-serif"
-                    style={`background-color: ${project.afterColor}`}
-                  >
-                    <div class="text-center px-2">
-                      <span class="block text-xs uppercase tracking-wider opacity-60 mb-1">
-                        After
-                      </span>
-                      <span class="text-xs opacity-70">Photo Placeholder</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="absolute top-0 bottom-0 left-1/2 w-0.5 bg-gold" />
+              <div class="aspect-[4/3] overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.imageAlt}
+                  width={480}
+                  height={360}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
               <div class="p-5">
                 <h3 class="font-serif text-lg text-wood">{project.title}</h3>
@@ -98,7 +85,7 @@ const beforeAfterProjects = [
         }
       </div>
 
-      <div class="text-center mt-12 reveal">
+      <div class="text-center mt-12">
         <a
           href="/portfolio/"
           class="inline-flex items-center gap-2 text-gold font-semibold hover:text-gold-dark transition-colors"

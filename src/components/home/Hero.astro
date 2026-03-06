@@ -1,23 +1,35 @@
 ---
+import { Image } from 'astro:assets';
 import Button from '../ui/Button.astro';
+import heroBanner from '../../assets/images/hero/home-banner.png';
 ---
 
-<section class="relative bg-wood overflow-hidden texture-wood">
-  <div class="relative z-10">
-    <!-- Subtle decorative gradient overlay -->
-    <div class="absolute inset-0 bg-gradient-to-br from-wood-dark/40 via-transparent to-gold/10">
-    </div>
+<section class="relative bg-wood overflow-hidden">
+  <!-- Hero Background Image -->
+  <div class="absolute inset-0">
+    <Image
+      src={heroBanner}
+      alt=""
+      class="w-full h-full object-cover"
+      widths={[640, 1024, 1440, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-wood-dark/70"></div>
+  </div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 lg:py-40">
+  <div class="relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 lg:py-40">
       <div class="max-w-3xl">
         <!-- Tagline -->
-        <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-4 reveal">
+        <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-4">
           Dallas-Fort Worth's Trusted Craftsmen
         </p>
 
         <!-- Main Heading -->
         <h1
-          class="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-cream font-bold leading-tight reveal"
+          class="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-cream font-bold leading-tight"
         >
           Restoring Craftsmanship
           <span class="block mt-2">
@@ -26,26 +38,24 @@ import Button from '../ui/Button.astro';
         </h1>
 
         <!-- Subheading -->
-        <p class="mt-6 text-lg md:text-xl text-cream/80 max-w-2xl leading-relaxed reveal">
-          Expert furniture repair, antique restoration, and custom upholstery. We bring your
-          treasured pieces back to life with the care they deserve.
+        <p class="mt-6 text-lg md:text-xl text-cream/80 max-w-2xl leading-relaxed">
+          Expert furniture repair, antique restoration, and custom upholstery from our workshop
+          in Wylie, TX. We bring your treasured pieces back to life with the care they deserve.
         </p>
 
         <!-- CTA Buttons -->
-        <div class="mt-10 flex flex-col sm:flex-row gap-4 reveal">
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
           <Button href="/contact/" variant="primary" size="lg"> Get a Free Estimate </Button>
-          <Button
+          <a
             href="/portfolio/"
-            variant="outline"
-            size="lg"
-            class="border-cream/40 text-cream hover:bg-cream/10 hover:text-cream"
+            class="inline-flex items-center justify-center font-semibold rounded-sm transition-all duration-300 cursor-pointer px-8 py-4 text-lg border-2 border-cream text-cream hover:bg-cream hover:text-wood"
           >
             View Our Work
-          </Button>
+          </a>
         </div>
 
         <!-- Trust Signals -->
-        <div class="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-cream/60 text-sm reveal">
+        <div class="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-cream/60 text-sm">
           <div class="flex items-center gap-2">
             <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"
               ><path

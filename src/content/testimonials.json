@@ -1,22 +1,32 @@
 [
   {
-    "quote": "The craftsmanship was impeccable. They restored our antique settee beautifully.",
-    "author": "Customer review",
+    "quote": "Arnold restored my vintage 1930s radio to like-new condition. The finish and color matching were extraordinary. You would never know it had been damaged.",
+    "author": "Marc Entsminger",
     "rating": 5
   },
   {
-    "quote": "Arnold and his team did an amazing job on my grandmother's rocking chair. The detail of their work is outstanding.",
+    "quote": "They restored my grandfather's settee with impeccable craftsmanship. It is truly a masterpiece, and I am proud to pass it down to my children knowing it will last another generation.",
+    "author": "Nancy Volkert",
+    "rating": 5
+  },
+  {
+    "quote": "Arnold and his team did an amazing job on my grandmother's dining table. The craftsmanship and attention to detail were outstanding. Highly recommend.",
     "author": "Chris S.",
     "rating": 5
   },
   {
-    "quote": "Had a 150-year-old chair restored. Worth every penny of the $1,200. Looks brand new while keeping its character.",
+    "quote": "Had a 150-year-old family chair restored. Worth every penny of the $1,200. It looks brand new while keeping all of its original character.",
     "author": "John Murray",
     "rating": 5
   },
   {
-    "quote": "They restored my 1930s radio to its former glory. The attention to detail was remarkable.",
-    "author": "Marc Entsminger",
+    "quote": "Quick turnaround and great skills. Arnold clearly knows what he is doing and genuinely cares about the work.",
+    "author": "Antonio Valentino",
+    "rating": 5
+  },
+  {
+    "quote": "Best antique restorations in DFW. No one else comes close to the quality of work ARED delivers.",
+    "author": "Chase Green",
     "rating": 5
   }
 ]

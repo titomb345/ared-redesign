@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/ui/SectionHeading.astro';
 import Button from '../components/ui/Button.astro';
 import testimonials from '../content/testimonials.json';
+import arnoldPhoto from '../assets/images/portfolio/antique-experts.jpg';
 ---
 
 <Layout
@@ -27,30 +29,20 @@ import testimonials from '../content/testimonials.json';
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
         <!-- Image Placeholder -->
-        <div class="lg:col-span-2 reveal">
-          <div
-            class="aspect-[3/4] bg-wood-light/20 border border-gold/10 rounded-sm flex items-center justify-center"
-          >
-            <div class="text-center text-warm-gray">
-              <svg
-                class="w-16 h-16 mx-auto mb-3 opacity-40"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-              </svg>
-              <p class="text-sm">Photo of Arnold<br />in the Workshop</p>
-            </div>
+        <div class="lg:col-span-2">
+          <div class="aspect-[3/4] overflow-hidden border border-gold/10 rounded-sm">
+            <Image
+              src={arnoldPhoto}
+              alt="Arnold, ARED's founder and lead craftsman, working on upholstery in the workshop"
+              width={400}
+              height={533}
+              class="w-full h-full object-cover"
+            />
           </div>
         </div>
 
         <!-- Story Content -->
-        <div class="lg:col-span-3 reveal">
+        <div class="lg:col-span-3">
           <h2 class="font-serif text-3xl text-wood mb-6">A Family Tradition of Craftsmanship</h2>
 
           <div class="space-y-5 text-charcoal-light leading-relaxed">
@@ -86,13 +78,49 @@ import testimonials from '../content/testimonials.json';
     </div>
   </section>
 
-  <!-- Values Section -->
+  <!-- Restoration Philosophy -->
   <section class="py-16 md:py-24 bg-cream-dark/50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading tagline="Our Approach"> Restoration Done Right </SectionHeading>
+
+      <div class="space-y-5 text-charcoal-light leading-relaxed mt-4">
+        <p>
+          For a long time, "restoration" meant stripping away the original patina, re-gilding metal
+          objects, and making everything look factory fresh. We take a different approach. At ARED,
+          we prioritize preserving the authentic character of each piece while carefully addressing
+          structural damage, dents, cracks, and wear.
+        </p>
+        <p>
+          Tired of furniture shopping where everything looks exactly the same? By restoring your old
+          furniture, you can update the pieces you already love. And here is something most people
+          do not know: in some cases, we can alter less expensive furniture during the restoration
+          process to create a more antique, one-of-a-kind look. You do not have to spend a fortune
+          to have furniture with real character.
+        </p>
+        <p>
+          Our expertise also means preventing irreversible damage. Poor previous repairs, incorrect
+          finishes, and well-meaning DIY attempts can sometimes cause more harm than good. We know
+          how to undo those mistakes and apply the right methods, whether that means classic finishes
+          that honor an aged piece or a completely new direction that gives your furniture a second
+          life.
+        </p>
+        <p>
+          We also help customers with insurance claims for damaged furniture. If a move, flood, or
+          accident has damaged a valuable piece, we can provide the documentation and honest
+          estimates needed to support your claim. We have seen too many adjusters undervalue what
+          proper restoration actually costs, and we are glad to advocate for our customers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 md:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeading tagline="What We Stand For"> Our Values </SectionHeading>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-4">
-        <div class="text-center p-8 reveal">
+        <div class="text-center p-8">
           <div
             class="w-16 h-16 mx-auto bg-wood/5 rounded-full flex items-center justify-center mb-6"
           >
@@ -113,7 +141,7 @@ import testimonials from '../content/testimonials.json';
           </p>
         </div>
 
-        <div class="text-center p-8 reveal" style="transition-delay: 100ms">
+        <div class="text-center p-8">
           <div
             class="w-16 h-16 mx-auto bg-wood/5 rounded-full flex items-center justify-center mb-6"
           >
@@ -134,7 +162,7 @@ import testimonials from '../content/testimonials.json';
           </p>
         </div>
 
-        <div class="text-center p-8 reveal" style="transition-delay: 200ms">
+        <div class="text-center p-8">
           <div
             class="w-16 h-16 mx-auto bg-wood/5 rounded-full flex items-center justify-center mb-6"
           >
@@ -167,8 +195,7 @@ import testimonials from '../content/testimonials.json';
         {
           testimonials.map((testimonial, index) => (
             <div
-              class="bg-cream-dark/50 border border-gold/10 rounded-sm p-8 reveal"
-              style={`transition-delay: ${index * 100}ms`}
+              class="bg-cream-dark/50 border border-gold/10 rounded-sm p-8"
             >
               <div class="flex gap-1 mb-3">
                 {Array.from({ length: testimonial.rating }).map(() => (
@@ -200,14 +227,12 @@ import testimonials from '../content/testimonials.json';
       </p>
       <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
         <Button href="/contact/" variant="primary" size="lg">Contact Us Today</Button>
-        <Button
+        <a
           href="tel:+12146826371"
-          variant="outline"
-          size="lg"
-          class="border-cream/40 text-cream hover:bg-cream/10 hover:text-cream"
+          class="inline-flex items-center justify-center font-semibold rounded-sm transition-all duration-300 cursor-pointer px-8 py-4 text-lg border-2 border-cream text-cream hover:bg-cream hover:text-wood"
         >
           Call (214) 682-6371
-        </Button>
+        </a>
       </div>
     </div>
   </section>

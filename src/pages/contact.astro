@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/contact/ContactForm.astro';
 import { serviceAreas } from '../data/services';
+
+// Cities with dedicated service area pages get linked
+const cityPages: Record<string, string> = {
+  'Plano': '/services/plano-tx/',
+};
 ---
 
 <Layout
@@ -16,8 +21,9 @@ import { serviceAreas } from '../data/services';
       <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-3">Let's Connect</p>
       <h1 class="font-serif text-4xl md:text-5xl text-cream font-bold">Get in Touch</h1>
       <p class="mt-4 text-cream/70 text-lg max-w-2xl">
-        Ready to bring your furniture back to life? We provide free estimates and free pickup and
-        delivery throughout the DFW metroplex.
+        We have all had that moment of dread - a water ring on the dining table, a rip in
+        great-grandma's chair, a piece that just does not look the way it used to. Whatever
+        happened, let's talk about it. Free estimates, free pickup and delivery throughout DFW.
       </p>
     </div>
   </section>
@@ -27,7 +33,7 @@ import { serviceAreas } from '../data/services';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-5 gap-12">
         <!-- Contact Form -->
-        <div class="lg:col-span-3 reveal">
+        <div class="lg:col-span-3">
           <h2 class="font-serif text-2xl text-wood mb-6">Send Us a Message</h2>
           <p class="text-charcoal-light mb-8">
             Tell us about your piece and the type of work you need. We will get back to you within
@@ -37,7 +43,7 @@ import { serviceAreas } from '../data/services';
         </div>
 
         <!-- Contact Info Sidebar -->
-        <div class="lg:col-span-2 space-y-8 reveal" style="transition-delay: 150ms">
+        <div class="lg:col-span-2 space-y-8">
           <!-- Phone -->
           <div class="bg-cream-dark/50 border border-gold/10 rounded-sm p-6">
             <h3 class="font-serif text-lg text-wood mb-3">Call Us</h3>
@@ -126,54 +132,47 @@ import { serviceAreas } from '../data/services';
     </div>
   </section>
 
-  <!-- Google Maps Placeholder -->
+  <!-- Google Maps -->
   <section class="border-t border-gold/10">
-    <div class="bg-cream-dark/50 aspect-[16/6] flex items-center justify-center">
-      <div class="text-center text-warm-gray">
-        <svg
-          class="w-12 h-12 mx-auto mb-3 opacity-40"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-          ></path>
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-        </svg>
-        <p class="text-sm">Google Maps Embed<br />10 Regency Dr Bldg B, Wylie, TX 75098</p>
-      </div>
-    </div>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3342.8!2d-96.5389!3d33.0151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19f7a4e1a3e7%3A0x9e3b2a4c8f5d1234!2s10%20Regency%20Dr%20Bldg%20B%2C%20Wylie%2C%20TX%2075098!5e0!3m2!1sen!1sus!4v1709654400000"
+      class="w-full aspect-[16/6]"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="ARED Furniture Repair location at 10 Regency Dr Bldg B, Wylie, TX 75098"
+    ></iframe>
   </section>
 
   <!-- Service Area -->
   <section class="py-16 md:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="font-serif text-3xl text-wood mb-4 reveal">Our Service Area</h2>
+      <h2 class="font-serif text-3xl text-wood mb-4">Our Service Area</h2>
       <div class="ornament">
         <div class="ornament-diamond"></div>
       </div>
-      <p class="text-charcoal-light mt-6 mb-8 reveal">
+      <p class="text-charcoal-light mt-6 mb-8">
         We proudly serve the entire Dallas-Fort Worth metroplex with free pickup and delivery. Here
         are some of the cities we regularly service:
       </p>
-      <div class="flex flex-wrap justify-center gap-3 reveal">
+      <div class="flex flex-wrap justify-center gap-3">
         {
-          serviceAreas.map((city) => (
-            <span class="bg-cream-dark/70 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal">
-              {city}
-            </span>
-          ))
+          serviceAreas.map((city) => {
+            const href = cityPages[city];
+            return href ? (
+              <a href={href} class="bg-cream-dark/70 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal hover:border-gold hover:text-gold transition-colors">
+                {city}
+              </a>
+            ) : (
+              <span class="bg-cream-dark/70 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal">
+                {city}
+              </span>
+            );
+          })
         }
       </div>
-      <p class="text-sm text-warm-gray mt-6 reveal">
+      <p class="text-sm text-warm-gray mt-6">
         Don't see your city? Give us a call. We likely serve your area too.
       </p>
     </div>

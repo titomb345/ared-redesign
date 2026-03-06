@@ -1,0 +1,260 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/ui/Button.astro';
+
+const publishDate = '2025-02-18';
+
+const articleSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  'headline': 'When to Restore vs. Replace Antique Furniture: A Wylie Craftsman\'s Honest Take',
+  'description': 'A third-generation furniture restorer in Wylie, TX shares practical advice on when antique furniture is worth restoring and when it might be time to let go.',
+  'image': 'https://aredrepair.com/og-default.svg',
+  'publisher': {
+    '@type': 'LocalBusiness',
+    'name': 'ARED Furniture Repair & Antique Restoration',
+    'url': 'https://aredrepair.com',
+  },
+  'datePublished': publishDate,
+  'dateModified': publishDate,
+  'mainEntityOfPage': 'https://aredrepair.com/blog/restoring-antique-furniture-wylie-tx/',
+});
+---
+
+<Layout
+  title="When to Restore vs. Replace Antique Furniture | ARED Blog"
+  description="A third-generation furniture restorer in Wylie, TX shares practical advice on when antique furniture is worth restoring and when it might be time to let go."
+  canonicalPath="/blog/restoring-antique-furniture-wylie-tx/"
+  ogType="article"
+  breadcrumbs={[
+    { name: 'Blog', url: '/blog/' },
+    { name: 'When to Restore vs. Replace', url: '/blog/restoring-antique-furniture-wylie-tx/' },
+  ]}
+  additionalSchema={articleSchema}
+>
+  <!-- Article Header -->
+  <section class="bg-wood texture-wood py-16 md:py-24">
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/blog/" class="text-gold/70 text-sm hover:text-gold transition-colors inline-flex items-center gap-1 mb-6">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        Back to Blog
+      </a>
+      <h1 class="font-serif text-3xl md:text-4xl lg:text-5xl text-cream font-bold leading-tight">
+        When to Restore vs. Replace Antique Furniture: A Wylie Craftsman's Honest Take
+      </h1>
+      <div class="mt-6 flex items-center gap-4 text-cream/60 text-sm">
+        <time datetime={publishDate}>February 18, 2025</time>
+        <span>&bull;</span>
+        <span>8 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample Disclaimer -->
+  <div class="bg-burgundy text-cream text-center py-4 px-4 border-b-2 border-gold">
+    <p class="font-bold text-lg uppercase tracking-wider">For Sample Purposes Only</p>
+    <p class="text-cream/80 text-sm mt-1">This blog post is a demo showing what content marketing could look like for your business. It has not been published or attributed to anyone.</p>
+  </div>
+
+  <!-- Article Content -->
+  <article class="py-16 md:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="prose prose-lg max-w-none text-charcoal-light leading-relaxed space-y-6">
+
+        <p class="text-xl text-charcoal leading-relaxed">
+          I get asked this question at least twice a week. Someone calls the shop, describes a piece
+          of furniture they found at an estate sale in McKinney or inherited from a grandmother in
+          Garland, and wants to know: "Is it worth fixing?" The honest answer is that it depends. But
+          after 40-something years of doing this work out of our shop here in Wylie, I have learned
+          that most people already know the answer before they pick up the phone.
+        </p>
+
+        <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold mt-12 mb-4">
+          The Piece Nobody Wanted
+        </h2>
+
+        <p>
+          A few years back, a woman from Plano brought in a beat-up rocking chair. The finish was
+          almost completely gone, one arm was cracked, and the cane seat had a hole big enough to put
+          your fist through. She told me her father-in-law had built it by hand in the 1940s. Her
+          husband had grown up sitting in that chair while his dad read to him.
+        </p>
+
+        <p>
+          Now, if you looked at that chair with a price tag in mind, it was not worth much. You could
+          go to any furniture store in Dallas and buy a brand new rocker for less than what the
+          restoration would cost. But that is not really the question, is it? That chair held
+          something no store can sell you. We fixed it. She cried when she picked it up. That is the
+          kind of work I got into this business to do.
+        </p>
+
+        <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold mt-12 mb-4">
+          When Restoration Makes Sense
+        </h2>
+
+        <p>
+          My family has been working with wood for three generations. My grandfather started in the
+          old country, my father carried it on, and I opened ARED in 1980 right here in Wylie,
+          Texas. One thing all three of us would agree on is that solid craftsmanship does not go out
+          of style. A well-built piece of furniture from 80 or 100 years ago was made with materials
+          and techniques you simply do not find in mass-produced furniture today.
+        </p>
+
+        <p>Here are the situations where I almost always tell people to go ahead with the restoration:</p>
+
+        <ul class="space-y-3 list-none pl-0">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span><strong class="text-charcoal">Solid hardwood construction.</strong> If the frame is oak, walnut, mahogany, or cherry and the joints are real mortise-and-tenon or dovetail, that piece was built to last several lifetimes. A new finish and some joint tightening will make it feel brand new. You cannot buy that quality at a furniture chain in Richardson or Frisco for any price.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span><strong class="text-charcoal">Sentimental value.</strong> I have restored pieces that traveled across oceans with families. I have repaired dining tables where four generations ate their holiday meals. No dollar amount captures that. If the piece means something to you, the restoration is almost always worth it.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span><strong class="text-charcoal">It was expensive when it was new.</strong> High-end furniture from brands like Henkel Harris, Baker, Drexel Heritage, or Ethan Allen was made with real craftsmanship. These pieces absolutely deserve a second life. We see a lot of this come through our shop from estates around Allen, McKinney, and the Park Cities.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span><strong class="text-charcoal">The style is right but the condition is not.</strong> A lot of people in the DFW area are tired of everything looking the same. If you have a unique antique that fits your taste but just looks tired, a refinish or reupholster can transform it for a fraction of what a comparable new piece would cost.</span>
+          </li>
+        </ul>
+
+        <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold mt-12 mb-4">
+          When It Might Be Time to Let Go
+        </h2>
+
+        <p>
+          I will be straight with you, because I think that is more helpful than telling everyone
+          what they want to hear. There are cases where I have told customers that a restoration does
+          not make financial sense.
+        </p>
+
+        <p>
+          Flat-pack furniture and pieces made primarily from particleboard or MDF were not designed
+          for longevity. The materials break down in ways that are difficult and expensive to repair
+          properly. If the structural material itself is failing, not just the finish or upholstery,
+          sometimes it is more practical to start fresh.
+        </p>
+
+        <p>
+          Water damage is the other one to watch for. A little surface damage from a glass ring? We
+          fix that all day long. But if a piece sat in a flooded garage in Rowlett or Mesquite and
+          the wood itself is warped, delaminated, or growing mold deep in the grain, there is a
+          limit to what restoration can accomplish. I would rather be honest about that upfront than
+          take someone's money for a job that will not hold up.
+        </p>
+
+        <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold mt-12 mb-4">
+          The Most Common Mistake I See in DFW
+        </h2>
+
+        <p>
+          People wait too long. I cannot tell you how many times someone has brought in a piece and
+          said, "I have had this sitting in my garage for five years meaning to get it fixed." Texas
+          heat and humidity are brutal on furniture. A garage in Wylie or Sachse can hit 130 degrees
+          in the summer. Wood expands, contracts, and cracks. Veneer lifts. Glue joints fail. Fabric
+          gets musty and attracts pests.
+        </p>
+
+        <p>
+          If you have a piece you care about, the best time to get it looked at is now. The second
+          best time is before the next Texas summer.
+        </p>
+
+        <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold mt-12 mb-4">
+          What a Typical Restoration Looks Like
+        </h2>
+
+        <p>
+          People sometimes picture restoration as just slapping some stain on a table and calling it
+          done. The reality is more involved than that, and I think it helps to understand the
+          process so you know what you are paying for.
+        </p>
+
+        <p>
+          For a typical antique table or dresser, we start by assessing the piece at our shop on
+          Regency Drive in Wylie. We look at the wood species, the construction method, the type of
+          existing finish, and the extent of the damage. From there we give you an honest estimate
+          and a timeline.
+        </p>
+
+        <p>
+          The actual work might include disassembling loose joints, re-gluing with proper adhesive
+          for that wood species, repairing or replacing damaged veneer, carefully stripping the old
+          finish without damaging the wood underneath, sanding to the right grit, applying stain if
+          needed, and building up a new finish coat by coat. For upholstery work, we tear the piece
+          down to the bare frame, replace springs, webbing, foam, and fabric, and put it all back
+          together so it is comfortable and beautiful.
+        </p>
+
+        <p>
+          Most projects take two to six weeks. We offer free pickup and delivery anywhere in the DFW
+          metroplex, from Fort Worth to Garland, Frisco to Arlington. You do not even have to figure
+          out how to fit a dresser in your car.
+        </p>
+
+        <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold mt-12 mb-4">
+          A Quick Word on DIY
+        </h2>
+
+        <p>
+          I am not going to tell you never to refinish furniture yourself. If you enjoy it and you
+          are working on a piece that is not irreplaceable, go for it. But I will tell you this: we
+          get a lot of rescue jobs from well-intentioned DIY attempts. Someone watches a video,
+          buys the wrong stripper, sands through the veneer, or uses a finish that does not bond to
+          the original. On an antique with real value, those mistakes can be costly or impossible to
+          reverse.
+        </p>
+
+        <p>
+          If the piece matters to you, at least get a professional opinion first. A five-minute phone
+          call with us might save you a lot of heartache. We have had people call from Murphy,
+          Lucas, and as far as Anna just to ask a quick question, and we are always happy to point
+          you in the right direction, even if the answer is "you can handle this one yourself."
+        </p>
+
+        <h2 class="font-serif text-2xl md:text-3xl text-wood font-bold mt-12 mb-4">
+          The Bottom Line
+        </h2>
+
+        <p>
+          Good furniture was made to last. The people who built it put real skill and real materials
+          into every piece, and that kind of work deserves to be preserved. If your great-aunt's
+          china cabinet is sitting in a storage unit in Dallas gathering dust, or your grandmother's
+          dining set is in the garage in Plano because the finish is shot, give us a call. We will
+          tell you honestly whether it makes sense to restore it, and if it does, we will make it
+          beautiful again.
+        </p>
+
+        <p>
+          That is what we have been doing since 1980, and it is what we plan to keep doing for a
+          long time.
+        </p>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 border-t border-gold/15 pt-10 text-center">
+        <p class="font-serif text-xl text-wood font-semibold mb-3">Ready to restore your furniture?</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <Button href="/contact/" variant="primary" size="sm">Get a Free Estimate</Button>
+          <Button href="tel:+12146826371" variant="outline" size="sm">Call (214) 682-6371</Button>
+        </div>
+      </div>
+
+      <!-- Related Links -->
+      <div class="mt-10 flex flex-col sm:flex-row gap-6 justify-between text-sm">
+        <a href="/services/" class="text-gold font-semibold hover:text-gold-dark transition-colors inline-flex items-center gap-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+          View Our Services
+        </a>
+        <a href="/portfolio/" class="text-gold font-semibold hover:text-gold-dark transition-colors inline-flex items-center gap-1">
+          See Our Work
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>
