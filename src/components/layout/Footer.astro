@@ -9,10 +9,10 @@ const currentYear = 2026;
   <div class="relative z-10">
     <!-- Main Footer -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <!-- Brand Column -->
-        <div class="lg:col-span-1">
-          <div class="mb-4">
+        <div class="sm:col-span-2 lg:col-span-1 text-center sm:text-left">
+          <div class="mb-4 flex justify-center sm:justify-start">
             <Image
               src={logo}
               alt="ARED Furniture Repair & Antique Restoration"
@@ -28,49 +28,35 @@ const currentYear = 2026;
         </div>
 
         <!-- Quick Links -->
-        <div>
+        <div class="text-center sm:text-left">
           <h3 class="font-serif text-gold text-lg mb-4">Quick Links</h3>
-          <ul class="space-y-2">
+          <ul class="grid grid-cols-2 gap-x-6 gap-y-2">
             <li>
               <a href="/" class="text-cream/70 hover:text-gold transition-colors text-sm">Home</a>
             </li>
             <li>
-              <a href="/services/" class="text-cream/70 hover:text-gold transition-colors text-sm"
-                >Services</a
-              >
+              <a href="/services/" class="text-cream/70 hover:text-gold transition-colors text-sm">Services</a>
             </li>
             <li>
-              <a href="/portfolio/" class="text-cream/70 hover:text-gold transition-colors text-sm"
-                >Portfolio</a
-              >
+              <a href="/portfolio/" class="text-cream/70 hover:text-gold transition-colors text-sm">Portfolio</a>
             </li>
             <li>
-              <a href="/about/" class="text-cream/70 hover:text-gold transition-colors text-sm"
-                >About</a
-              >
+              <a href="/about/" class="text-cream/70 hover:text-gold transition-colors text-sm">About</a>
             </li>
             <li>
-              <a href="/contact/" class="text-cream/70 hover:text-gold transition-colors text-sm"
-                >Contact</a
-              >
+              <a href="/contact/" class="text-cream/70 hover:text-gold transition-colors text-sm">Contact</a>
             </li>
             <li>
-              <a
-                href="/privacy-policy/"
-                class="text-cream/70 hover:text-gold transition-colors text-sm">Privacy Policy</a
-              >
+              <a href="/privacy-policy/" class="text-cream/70 hover:text-gold transition-colors text-sm">Privacy Policy</a>
             </li>
             <li>
-              <a
-                href="/terms-of-use/"
-                class="text-cream/70 hover:text-gold transition-colors text-sm">Terms of Use</a
-              >
+              <a href="/terms-of-use/" class="text-cream/70 hover:text-gold transition-colors text-sm">Terms of Use</a>
             </li>
           </ul>
         </div>
 
         <!-- Business Hours -->
-        <div>
+        <div class="text-center sm:text-left">
           <h3 class="font-serif text-gold text-lg mb-4">Business Hours</h3>
           <ul class="space-y-2 text-sm">
             <li class="flex justify-between text-cream/70">
@@ -93,13 +79,13 @@ const currentYear = 2026;
         </div>
 
         <!-- Contact Info -->
-        <div>
+        <div class="text-center sm:text-left">
           <h3 class="font-serif text-gold text-lg mb-4">Contact</h3>
           <ul class="space-y-3 text-sm">
             <li>
               <a
                 href="tel:+12146826371"
-                class="flex items-start gap-2 text-cream/70 hover:text-gold transition-colors"
+                class="flex items-start justify-center sm:justify-start gap-2 text-cream/70 hover:text-gold transition-colors"
               >
                 <svg
                   class="w-5 h-5 text-gold flex-shrink-0 mt-0.5"
@@ -117,7 +103,7 @@ const currentYear = 2026;
                 <span>(214) 682-6371</span>
               </a>
             </li>
-            <li class="flex items-start gap-2 text-cream/70">
+            <li class="flex items-start justify-center sm:justify-start gap-2 text-cream/70">
               <svg
                 class="w-5 h-5 text-gold flex-shrink-0 mt-0.5"
                 fill="none"
@@ -144,7 +130,7 @@ const currentYear = 2026;
           </ul>
 
           <!-- Social Links -->
-          <div class="flex gap-3 mt-6">
+          <div class="flex justify-center sm:justify-start gap-3 mt-6">
             <a
               href="https://www.facebook.com/FurnitureRepairing/"
               aria-label="Follow ARED on Facebook"
@@ -208,7 +194,7 @@ const currentYear = 2026;
     <!-- Bottom Bar -->
     <div class="border-t border-cream/10">
       <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-3"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-16 lg:pb-6 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-3"
       >
         <p class="text-cream/50 text-sm">
           &copy; {currentYear} ARED Furniture Repair & Antique Restoration. All rights reserved.
