@@ -81,8 +81,8 @@ export const services: Service[] = [
 
 export const serviceAreas = [
   'Wylie',
-  'Dallas',
   'Plano',
+  'Dallas',
   'McKinney',
   'Allen',
   'Frisco',

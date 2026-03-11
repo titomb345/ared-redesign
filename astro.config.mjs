@@ -7,6 +7,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://aredrepair.com',
+  trailingSlash: 'always',
   vite: {
     plugins: [tailwindcss()],
   },
@@ -27,6 +28,8 @@ export default defineConfig({
         };
         if (priorities[path] !== undefined) {
           item.priority = priorities[path];
+        } else if (path.startsWith('/services/') && path !== '/services/') {
+          item.priority = 0.8;
         } else if (path.startsWith('/blog/')) {
           item.priority = 0.7;
         }
