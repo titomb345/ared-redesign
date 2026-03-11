@@ -13,8 +13,7 @@ import testimonials from '../../content/testimonials.json';
       {
         testimonials.map((testimonial, index) => (
           <div
-            class="bg-cream/5 backdrop-blur-sm border border-cream/10 rounded-sm p-8 reveal"
-            style={`transition-delay: ${index * 100}ms`}
+            class="bg-cream/5 backdrop-blur-sm border border-cream/10 rounded-sm p-8"
           >
             <div class="flex gap-1 mb-4">
               {Array.from({ length: testimonial.rating }).map(() => (

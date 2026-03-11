@@ -1,0 +1,276 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/ui/Button.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import { services } from '../../data/services';
+import { serviceCities } from '../../data/service-cities';
+import type { CityData } from '../../data/service-cities';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return serviceCities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+};
+
+const { city } = Astro.props as { city: CityData };
+
+const areaSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Furniture Repair and Antique Restoration',
+  provider: {
+    '@type': 'LocalBusiness',
+    '@id': 'https://aredrepair.com/#business',
+    name: 'ARED Furniture Repair & Antique Restoration',
+    telephone: '+12146826371',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: `${city.name}, ${city.state}`,
+  },
+  description: city.isHomeBase
+    ? `Expert furniture repair, antique restoration, and custom upholstery located in ${city.name}, ${city.state}. Visit our workshop at 10 Regency Dr Bldg B.`
+    : `Expert furniture repair, antique restoration, and custom upholstery serving ${city.name}, ${city.state}. Free pickup and delivery.`,
+});
+---
+
+<Layout
+  title={city.meta.title}
+  description={city.meta.description}
+  canonicalPath={`/services/${city.slug}/`}
+  breadcrumbs={[
+    { name: 'Services', url: '/services/' },
+    { name: `${city.name}, TX`, url: `/services/${city.slug}/` },
+  ]}
+  additionalSchema={areaSchema}
+>
+  <!-- Page Header -->
+  <section class="bg-wood texture-wood py-16 md:py-24">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-gold font-semibold tracking-wider uppercase text-sm mb-3">{city.tagline}</p>
+      <h1 class="font-serif text-4xl md:text-5xl text-cream font-bold leading-tight">
+        Furniture Repair & Antique Restoration in {city.name}
+      </h1>
+      <p class="mt-4 text-cream/70 text-lg max-w-2xl">
+        {city.headerIntro}
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4">
+        <Button href="/contact/" variant="primary" size="lg">Get a Free Estimate</Button>
+        <a
+          href="tel:+12146826371"
+          class="inline-flex items-center justify-center font-semibold rounded-sm transition-all duration-300 cursor-pointer px-8 py-4 text-lg border-2 border-cream text-cream hover:bg-cream hover:text-wood"
+        >
+          Call (214) 682-6371
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why [City] residents trust ARED -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl md:text-4xl text-wood font-bold mb-4">
+        {city.isHomeBase ? `${city.name}'s Own Furniture Repair Workshop` : `Why ${city.name} Homeowners Choose ARED`}
+      </h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
+      </div>
+      <div class="space-y-5 text-charcoal-light leading-relaxed mt-4" set:html={city.intro} />
+    </div>
+  </section>
+
+  <!-- Services we provide -->
+  <section class="py-16 md:py-24 bg-cream-dark/50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading tagline="What We Do">
+        Our Services for {city.name} Residents
+      </SectionHeading>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+        {services.map((service, index) => (
+          <div
+            class="bg-cream border border-gold/10 rounded-sm p-6"
+          >
+            <h3 class="font-serif text-xl text-wood mb-2">{service.name}</h3>
+            <p class="text-charcoal-light text-sm leading-relaxed">{service.shortDescription}</p>
+            <ul class="mt-3 space-y-1">
+              {service.features.slice(0, 3).map((feature) => (
+                <li class="flex items-start gap-2 text-sm text-charcoal-light">
+                  <svg class="w-4 h-4 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a href="/services/" class="text-gold font-semibold hover:text-gold-dark transition-colors inline-flex items-center gap-1">
+          View full service details
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl md:text-4xl text-wood font-bold text-center mb-4">
+        {city.isHomeBase ? 'Visit Our Workshop' : `How It Works from ${city.name}`}
+      </h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
+            <span class="font-serif text-xl text-gold font-bold">1</span>
+          </div>
+          <h3 class="font-serif text-lg text-wood mb-2">Call or Message Us</h3>
+          <p class="text-sm text-charcoal-light leading-relaxed">
+            Tell us about your piece and what it needs. We will give you an honest estimate over the
+            phone or ask you to send a few photos for a closer look.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
+            <span class="font-serif text-xl text-gold font-bold">2</span>
+          </div>
+          <h3 class="font-serif text-lg text-wood mb-2">
+            {city.isHomeBase ? 'Drop Off or We Pick Up' : 'We Pick It Up'}
+          </h3>
+          <p class="text-sm text-charcoal-light leading-relaxed">
+            {city.isHomeBase
+              ? `Bring your piece to our workshop at 10 Regency Dr Bldg B, or we will come to your ${city.name} home and pick it up at no charge. Either way works for us.`
+              : `We drive to your ${city.name} home, carefully load your furniture, and bring it to our workshop in Wylie - about ${city.driveTime} away. No charge.`}
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
+            <span class="font-serif text-xl text-gold font-bold">3</span>
+          </div>
+          <h3 class="font-serif text-lg text-wood mb-2">
+            {city.isHomeBase ? 'Restore & Return' : 'Restore & Deliver'}
+          </h3>
+          <p class="text-sm text-charcoal-light leading-relaxed">
+            {city.isHomeBase
+              ? `We do the work right here in our ${city.name} shop. Stop by anytime to check on progress. Most projects take 2 to 6 weeks depending on the scope.`
+              : `We do the work, keep you updated, and deliver your restored piece right back to your door when it is ready. Most projects take 2 to 6 weeks.`}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neighborhoods we serve -->
+  <section class="py-16 md:py-24 bg-cream-dark/50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl text-wood font-bold mb-4">
+        {city.name} Neighborhoods We Serve
+      </h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
+      </div>
+      <p class="text-charcoal-light mt-4 mb-8">
+        {city.isHomeBase
+          ? `We are centrally located in ${city.name} and serve every corner of town. Here are some of the neighborhoods we work with regularly:`
+          : `We pick up and deliver throughout ${city.name} and the surrounding area. Here are some of the neighborhoods we regularly visit:`}
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        {city.neighborhoods.map((area) => (
+          <span class="bg-cream border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal">
+            {area}
+          </span>
+        ))}
+      </div>
+      <p class="text-sm text-warm-gray mt-6">
+        Don't see your neighborhood? We serve all of {city.name} and the surrounding communities.
+      </p>
+    </div>
+  </section>
+
+  <!-- Common projects -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-serif text-3xl text-wood font-bold mb-4">
+        {city.isHomeBase ? `What Our ${city.name} Neighbors Bring Us` : `Common Projects from ${city.name} Homes`}
+      </h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 mt-6">
+        {city.commonProjects.map((project) => (
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <p class="font-medium text-charcoal">{project.title}</p>
+              <p class="text-sm text-charcoal-light">{project.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby cities -->
+  {city.nearbyLinks.length > 0 && (
+    <section class="py-12 bg-cream-dark/50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-charcoal-light text-sm">
+          Also serving nearby:
+          {city.nearbyLinks.map((link, i) => (
+            <>
+              <a href={`/services/${link.slug}/`} class="text-gold hover:text-gold-dark transition-colors font-medium">
+                {link.name}, TX
+              </a>
+              {i < city.nearbyLinks.length - 1 && ' · '}
+            </>
+          ))}
+          {' '}and the entire DFW metroplex.
+        </p>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-wood texture-wood">
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl md:text-4xl text-cream font-bold">
+        {city.isHomeBase ? `Your ${city.name} Furniture Repair Shop` : `${city.name} Furniture Repair Starts with a Phone Call`}
+      </h2>
+      <p class="mt-4 text-cream/70 text-lg">
+        {city.isHomeBase
+          ? 'Stop by our workshop at 10 Regency Dr Bldg B, give us a call, or send us a message. We would love to take a look at your piece and give you an honest assessment.'
+          : `Tell us about your piece. We will give you an honest assessment, a fair estimate, and pick it up from your ${city.name} home at no charge.`}
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/contact/" variant="primary" size="lg">Get a Free Estimate</Button>
+        <a
+          href="tel:+12146826371"
+          class="inline-flex items-center justify-center font-semibold rounded-sm transition-all duration-300 cursor-pointer px-8 py-4 text-lg border-2 border-cream text-cream hover:bg-cream hover:text-wood"
+        >
+          Call (214) 682-6371
+        </a>
+      </div>
+      <p class="mt-6 text-cream/50 text-sm">
+        {city.isHomeBase
+          ? `Mon-Fri 9am-5pm, Sat 9am-3:30pm \u2022 10 Regency Dr Bldg B, ${city.name}, TX 75098`
+          : `Mon-Fri 9am-5pm, Sat 9am-3:30pm \u2022 Free pickup and delivery in ${city.name} and all of DFW`}
+      </p>
+    </div>
+  </section>
+</Layout>

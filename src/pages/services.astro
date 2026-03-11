@@ -167,7 +167,7 @@ const schemas = [serviceSchema, faqSchema];
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="text-center reveal">
+        <div class="text-center">
           <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
             <span class="font-serif text-xl text-gold font-bold">1</span>
           </div>
@@ -177,7 +177,7 @@ const schemas = [serviceSchema, faqSchema];
           </p>
         </div>
 
-        <div class="text-center reveal" style="transition-delay: 100ms">
+        <div class="text-center">
           <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
             <span class="font-serif text-xl text-gold font-bold">2</span>
           </div>
@@ -187,7 +187,7 @@ const schemas = [serviceSchema, faqSchema];
           </p>
         </div>
 
-        <div class="text-center reveal" style="transition-delay: 200ms">
+        <div class="text-center">
           <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
             <span class="font-serif text-xl text-gold font-bold">3</span>
           </div>
@@ -197,7 +197,7 @@ const schemas = [serviceSchema, faqSchema];
           </p>
         </div>
 
-        <div class="text-center reveal" style="transition-delay: 300ms">
+        <div class="text-center">
           <div class="w-14 h-14 mx-auto bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mb-4">
             <span class="font-serif text-xl text-gold font-bold">4</span>
           </div>
@@ -229,7 +229,7 @@ const schemas = [serviceSchema, faqSchema];
               <summary class="flex items-center justify-between cursor-pointer p-6 text-wood font-semibold hover:text-gold transition-colors list-none">
                 <span class="pr-4">{faq.question}</span>
                 <svg
-                  class="w-5 h-5 text-gold flex-shrink-0 transform transition-transform duration-250 group-open:rotate-180"
+                  class="faq-chevron w-5 h-5 text-gold flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -256,8 +256,41 @@ const schemas = [serviceSchema, faqSchema];
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- Service Areas -->
   <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl text-wood font-bold mb-4">
+        Areas We Serve
+      </h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
+      </div>
+      <p class="text-charcoal-light mt-4 mb-8">
+        We serve the entire Dallas-Fort Worth metroplex from our workshop in Wylie, TX with free pickup and delivery.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/services/wylie-tx/" class="bg-cream-dark/70 border border-gold/20 px-4 py-2 rounded-sm text-sm text-charcoal hover:border-gold hover:text-gold transition-colors font-medium">
+          Wylie, TX
+        </a>
+        <a href="/services/plano-tx/" class="bg-cream-dark/70 border border-gold/20 px-4 py-2 rounded-sm text-sm text-charcoal hover:border-gold hover:text-gold transition-colors font-medium">
+          Plano, TX
+        </a>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Dallas</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">McKinney</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Allen</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Frisco</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Richardson</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Garland</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Rockwall</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Mesquite</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Rowlett</span>
+        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Fort Worth</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24 bg-cream-dark/50">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="font-serif text-3xl md:text-4xl text-wood font-bold">
         Have a Piece That Needs Attention?
@@ -278,20 +311,23 @@ const schemas = [serviceSchema, faqSchema];
   // Animate FAQ close — prevent instant snap by holding `open` until transition ends
   document.querySelectorAll('details').forEach((detail) => {
     const content = detail.querySelector('.faq-content');
-    if (!content) return;
+    const chevron = detail.querySelector('.faq-chevron');
+    if (!content || !chevron) return;
 
     detail.querySelector('summary')!.addEventListener('click', (e) => {
-      if (!detail.open) return; // opening is handled by CSS alone
+      if (!detail.open) return; // opening is handled natively + toggle event
       e.preventDefault();
       content.addEventListener('transitionend', () => detail.removeAttribute('open'), { once: true });
-      // Force the closing style by removing open visually
+      // Collapse content and rotate chevron back in sync
       (content as HTMLElement).style.gridTemplateRows = '0fr';
+      chevron.classList.remove('faq-chevron-open');
     });
 
-    // Reset inline style when opened so CSS takes over
+    // When opened, apply open styles via class (so chevron animates with content)
     detail.addEventListener('toggle', () => {
       if (detail.open) {
         (content as HTMLElement).style.gridTemplateRows = '';
+        chevron.classList.add('faq-chevron-open');
       }
     });
   });

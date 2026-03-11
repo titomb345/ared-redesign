@@ -1,5 +1,17 @@
 @import 'tailwindcss';
 
+/* Self-hosted fonts — eliminates Google Fonts external requests */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/playfair-display/400.css';
+@import '@fontsource/playfair-display/400-italic.css';
+@import '@fontsource/playfair-display/500.css';
+@import '@fontsource/playfair-display/500-italic.css';
+@import '@fontsource/playfair-display/600.css';
+@import '@fontsource/playfair-display/700.css';
+
 @theme {
   --color-wood: #3c2415;
   --color-wood-light: #5a3a25;
@@ -152,6 +164,15 @@ details[open] .faq-content {
 
 details .faq-inner {
   overflow: hidden;
+}
+
+/* FAQ chevron — synced with content transition */
+.faq-chevron {
+  transition: transform 0.25s ease-out;
+}
+
+.faq-chevron-open {
+  transform: rotate(180deg);
 }
 
 /* Lightbox */
