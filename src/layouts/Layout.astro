@@ -94,33 +94,33 @@ const localBusinessSchema = JSON.stringify({
   'review': [
     {
       '@type': 'Review',
-      'author': { '@type': 'Person', 'name': 'Chris S.' },
+      'author': { '@type': 'Person', 'name': 'Chris S' },
       'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' },
-      'reviewBody': 'Arnold and his team did an amazing job on my grandmother\'s dining table. The craftsmanship and attention to detail were outstanding.',
+      'reviewBody': 'I had an old dining table from my grandma restored by Arnold and his team. Wow I can\'t believe the craftsmanship of these guys. I will be back for sure.',
     },
     {
       '@type': 'Review',
       'author': { '@type': 'Person', 'name': 'John Murray' },
       'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' },
-      'reviewBody': 'Had a 150-year-old family chair restored. Worth every penny of the $1,200. It looks brand new while keeping all of its original character.',
+      'reviewBody': 'They did a fantastic job remodeling an antique chair. The chair was over 150 years old, in my wife\'s family for generations, and in bad shape from years of neglect. They worked with me to get it just the way I wanted it using fabric I provided. I could not be happier. It was not cheap ($1200.00), but this was not something I could have done myself.',
     },
     {
       '@type': 'Review',
       'author': { '@type': 'Person', 'name': 'Marc Entsminger' },
       'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' },
-      'reviewBody': 'Arnold restored my vintage 1930s radio to like-new condition. The finish and color matching were extraordinary.',
+      'reviewBody': 'I took in an old radio that had been sitting in a corner of my garage since the 1980\'s. This radio was originally built in the 1930\'s and was damaged. They took the radio and made it like new! It now looks like something out of a Hollywood movie. I am so impressed with the detail of their work and you cannot see where any of the damage was and the finish and color are extraordinary.',
     },
     {
       '@type': 'Review',
       'author': { '@type': 'Person', 'name': 'Nancy Volkert' },
       'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' },
-      'reviewBody': 'They restored my grandfather\'s settee with impeccable craftsmanship. It is truly a masterpiece.',
+      'reviewBody': 'ARED restored my long awaited settee given to me from my Grandfather so long ago and over the years had gotten into quite a disarray! The craftsmanship was impeccable, I was so excited to see the settee restored to its former glory, it\'s quite the masterpiece. This piece of furniture had so many memories and now I can hand it down to my children to create more.',
     },
     {
       '@type': 'Review',
       'author': { '@type': 'Person', 'name': 'Chase Green' },
       'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' },
-      'reviewBody': 'Best antique restorations in DFW. No one else comes close to the quality of work ARED delivers.',
+      'reviewBody': 'Their work is so amazing. By far the best antique restorations in DFW.',
     },
   ],
 });
@@ -190,6 +190,10 @@ const breadcrumbSchema =
       ? additionalSchema.map((schema) => <script type="application/ld+json" set:html={schema} />)
       : additionalSchema && <script type="application/ld+json" set:html={additionalSchema} />
     }
+    <!-- Cloudflare Web Analytics (production only) -->
+    {import.meta.env.PROD && (
+      <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "26b1683fc39741fe9a390e5ad13d37ff"}'></script>
+    )}
   </head>
   <body class="min-h-screen flex flex-col texture-parchment">
     <a href="#main-content" class="skip-link">Skip to content</a>

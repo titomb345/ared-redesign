@@ -3,12 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import ServiceCard from '../components/services/ServiceCard.astro';
 import Button from '../components/ui/Button.astro';
 import { services } from '../data/services';
+import { serviceCities } from '../data/service-cities';
 
 const faqs = [
   {
     question: 'How much does furniture restoration cost?',
     answer:
-      'Every piece is unique, so pricing depends on the type of repair, materials needed, and the complexity of the work. We provide free estimates after inspecting your piece. As a general range, simple repairs might start around $100, while full antique restorations can run $500-$2,000 or more depending on the scope.',
+      'Every piece is unique, so pricing depends on the type of repair, materials needed, and the complexity of the work. We provide free estimates after inspecting your piece. Give us a call at (214) 682-6371 or send us a message through our contact form and we will get back to you with an honest quote.',
   },
   {
     question: 'Do you offer free pickup and delivery?',
@@ -38,7 +39,7 @@ const faqs = [
   {
     question: 'What areas do you serve?',
     answer:
-      'We serve the entire Dallas-Fort Worth metroplex from our shop in Wylie, TX. That includes Dallas, Plano, McKinney, Allen, Frisco, Richardson, Garland, Mesquite, Rowlett, Fort Worth, Arlington, Irving, and all surrounding communities.',
+      'We serve the entire Dallas-Fort Worth metroplex from our shop in Wylie, TX. That includes Dallas, Plano, McKinney, Allen, Frisco, Richardson, Garland, Rockwall, Fort Worth, and all surrounding communities.',
   },
 ];
 
@@ -86,7 +87,7 @@ const schemas = [serviceSchema, faqSchema];
 
 <Layout
   title="Furniture Repair Services | ARED Restoration"
-  description="Antique restoration, custom upholstery, refinishing, and specialty work in DFW. Free pickup and delivery. Call ARED at (214) 682-6371."
+  description="Antique restoration, custom upholstery, refinishing, and specialty work in DFW. Free pickup and delivery. Request a free estimate from ARED today."
   canonicalPath="/services/"
   breadcrumbs={[{ name: 'Services', url: '/services/' }]}
   additionalSchema={schemas}
@@ -145,7 +146,7 @@ const schemas = [serviceSchema, faqSchema];
   <!-- Bold Promise -->
   <section class="py-12 md:py-16 bg-wood texture-wood">
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="font-serif text-2xl md:text-3xl text-cream italic leading-relaxed">
+      <p class="font-serif text-2xl md:text-3xl text-cream leading-relaxed">
         "Welding, caning, rush work, custom carvings, hand waxing, gold leaf, French polishing
         &mdash; if it involves furniture, there is nothing we will not take on. Bring us your
         project and let us show you what we can do."
@@ -269,22 +270,14 @@ const schemas = [serviceSchema, faqSchema];
         We serve the entire Dallas-Fort Worth metroplex from our workshop in Wylie, TX with free pickup and delivery.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/services/wylie-tx/" class="bg-cream-dark/70 border border-gold/20 px-4 py-2 rounded-sm text-sm text-charcoal hover:border-gold hover:text-gold transition-colors font-medium">
-          Wylie, TX
-        </a>
-        <a href="/services/plano-tx/" class="bg-cream-dark/70 border border-gold/20 px-4 py-2 rounded-sm text-sm text-charcoal hover:border-gold hover:text-gold transition-colors font-medium">
-          Plano, TX
-        </a>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Dallas</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">McKinney</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Allen</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Frisco</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Richardson</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Garland</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Rockwall</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Mesquite</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Rowlett</span>
-        <span class="bg-cream-dark/30 border border-gold/10 px-4 py-2 rounded-sm text-sm text-charcoal/70">Fort Worth</span>
+        {serviceCities.map((city) => (
+          <a
+            href={`/services/${city.slug}/`}
+            class="bg-cream-dark/70 border border-gold/20 px-4 py-2 rounded-sm text-sm text-charcoal hover:border-gold hover:text-gold transition-colors font-medium"
+          >
+            {city.name}, {city.state}
+          </a>
+        ))}
       </div>
     </div>
   </section>
