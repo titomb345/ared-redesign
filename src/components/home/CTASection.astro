@@ -2,24 +2,201 @@
 import Button from '../ui/Button.astro';
 ---
 
-<section class="py-20 md:py-28">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-wood font-bold">
-      Ready to Restore Your Furniture?
-    </h2>
-    <div class="ornament mt-6">
-      <div class="ornament-diamond"></div>
+<section class="py-20 md:py-28 bg-cream-dark/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Left: CTA Text -->
+      <div class="text-center lg:text-left">
+        <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl text-wood font-bold">
+          Ready to Restore Your Furniture?
+        </h2>
+        <div class="ornament mt-6 lg:mx-0">
+          <div class="ornament-diamond"></div>
+        </div>
+        <p class="mt-6 text-lg text-charcoal-light max-w-xl mx-auto lg:mx-0 leading-relaxed">
+          Whether it is a cherished family heirloom or a flea market find with potential, we will bring
+          it back to life. Send us a message or call for a free estimate with pickup and delivery included.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <Button href="tel:+12146826371" variant="secondary" size="lg">
+            Call (214) 682-6371
+          </Button>
+        </div>
+        <p class="mt-4 text-sm text-warm-gray">
+          Mon-Fri 9am-5pm, Sat 9am-3:30pm &bull; Free pickup and delivery in DFW
+        </p>
+      </div>
+
+      <!-- Right: Compact Contact Form -->
+      <div class="bg-cream rounded-sm border border-gold/20 shadow-lg p-8">
+        <h3 class="font-serif text-2xl text-wood mb-6">Get a Free Estimate</h3>
+        <form
+          name="homepage-contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="space-y-4"
+          id="homepage-form"
+        >
+          <p class="hidden">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+          <input type="hidden" name="form-name" value="homepage-contact" />
+
+          <div>
+            <label for="hp-name" class="block text-sm font-medium text-charcoal mb-1">
+              Name <span class="text-burgundy">*</span>
+            </label>
+            <input
+              type="text"
+              id="hp-name"
+              name="name"
+              required
+              autocomplete="name"
+              class="w-full px-4 py-3 bg-white border border-gold/20 rounded-sm text-charcoal placeholder-warm-gray focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors"
+              placeholder="Your name"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="hp-phone" class="block text-sm font-medium text-charcoal mb-1">
+                Phone <span class="text-burgundy">*</span>
+              </label>
+              <input
+                type="tel"
+                id="hp-phone"
+                name="phone"
+                required
+                autocomplete="tel"
+                class="w-full px-4 py-3 bg-white border border-gold/20 rounded-sm text-charcoal placeholder-warm-gray focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors"
+                placeholder="(555) 123-4567"
+              />
+            </div>
+            <div>
+              <label for="hp-email" class="block text-sm font-medium text-charcoal mb-1">
+                Email
+              </label>
+              <input
+                type="email"
+                id="hp-email"
+                name="email"
+                autocomplete="email"
+                class="w-full px-4 py-3 bg-white border border-gold/20 rounded-sm text-charcoal placeholder-warm-gray focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors"
+                placeholder="you@example.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="hp-message" class="block text-sm font-medium text-charcoal mb-1">
+              How can we help? <span class="text-burgundy">*</span>
+            </label>
+            <textarea
+              id="hp-message"
+              name="message"
+              required
+              rows="3"
+              class="w-full px-4 py-3 bg-white border border-gold/20 rounded-sm text-charcoal placeholder-warm-gray focus:border-gold focus:ring-1 focus:ring-gold/30 transition-colors resize-y"
+              placeholder="Describe your piece and the repair needed..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            id="hp-submit-btn"
+            class="w-full inline-flex items-center justify-center bg-burgundy text-cream px-8 py-4 rounded-sm font-semibold text-lg hover:bg-burgundy-dark transition-colors shadow-md hover:shadow-lg cursor-pointer"
+          >
+            <span id="hp-submit-text">Send Message</span>
+            <svg id="hp-submit-icon" class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+            <svg id="hp-submit-spinner" class="w-5 h-5 ml-2 animate-spin hidden" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Success Message -->
+        <div id="hp-form-success" class="hidden">
+          <div class="bg-forest/10 border border-forest/20 rounded-sm p-6 text-center">
+            <svg class="w-10 h-10 text-forest mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h3 class="font-serif text-xl text-wood mb-2">Message Sent!</h3>
+            <p class="text-charcoal-light text-sm">
+              We will get back to you as soon as possible. Need a faster response? Call
+              <a href="tel:+12146826371" class="text-gold font-semibold hover:text-gold-dark transition-colors">(214) 682-6371</a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div id="hp-form-error" class="hidden">
+          <div class="bg-burgundy/10 border border-burgundy/20 rounded-sm p-6 text-center">
+            <h3 class="font-serif text-xl text-wood mb-2">Something Went Wrong</h3>
+            <p class="text-charcoal-light text-sm">
+              Please try again or call us at
+              <a href="tel:+12146826371" class="text-gold font-semibold hover:text-gold-dark transition-colors">(214) 682-6371</a>.
+            </p>
+            <button
+              id="hp-retry-btn"
+              class="mt-3 inline-flex items-center justify-center bg-burgundy text-cream px-5 py-2 rounded-sm font-semibold text-sm hover:bg-burgundy-dark transition-colors cursor-pointer"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="mt-6 text-lg text-charcoal-light max-w-2xl mx-auto leading-relaxed">
-      Whether it is a cherished family heirloom or a flea market find with potential, we will bring
-      it back to life. Contact us for a free estimate with pickup and delivery included.
-    </p>
-    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-      <Button href="/contact/" variant="primary" size="lg"> Get Your Free Estimate </Button>
-      <Button href="tel:+12146826371" variant="secondary" size="lg"> Call (214) 682-6371 </Button>
-    </div>
-    <p class="mt-6 text-sm text-warm-gray">
-      Mon-Fri 9am-5pm, Sat 9am-3:30pm &bull; Free pickup and delivery in DFW
-    </p>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('homepage-form') as HTMLFormElement;
+  const successMsg = document.getElementById('hp-form-success')!;
+  const errorMsg = document.getElementById('hp-form-error')!;
+  const submitBtn = document.getElementById('hp-submit-btn') as HTMLButtonElement;
+  const submitText = document.getElementById('hp-submit-text')!;
+  const submitIcon = document.getElementById('hp-submit-icon')!;
+  const submitSpinner = document.getElementById('hp-submit-spinner')!;
+  const retryBtn = document.getElementById('hp-retry-btn')!;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitText.textContent = 'Sending...';
+    submitIcon.classList.add('hidden');
+    submitSpinner.classList.remove('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      if (response.ok) {
+        form.classList.add('hidden');
+        successMsg.classList.remove('hidden');
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch {
+      form.classList.add('hidden');
+      errorMsg.classList.remove('hidden');
+    } finally {
+      submitBtn.disabled = false;
+      submitText.textContent = 'Send Message';
+      submitIcon.classList.remove('hidden');
+      submitSpinner.classList.add('hidden');
+    }
+  });
+
+  retryBtn.addEventListener('click', () => {
+    errorMsg.classList.add('hidden');
+    form.classList.remove('hidden');
+  });
+</script>

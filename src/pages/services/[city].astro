@@ -34,6 +34,21 @@ const areaSchema = JSON.stringify({
     ? `Expert furniture repair, antique restoration, and custom upholstery located in ${city.name}, ${city.state}. Visit our workshop at 10 Regency Dr Bldg B.`
     : `Expert furniture repair, antique restoration, and custom upholstery serving ${city.name}, ${city.state}. Free pickup and delivery.`,
 });
+
+const faqSchema = city.faqs.length > 0 ? JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: city.faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+}) : '';
+
+const schemas = [areaSchema, faqSchema].filter(Boolean);
 ---
 
 <Layout
@@ -44,7 +59,7 @@ const areaSchema = JSON.stringify({
     { name: 'Services', url: '/services/' },
     { name: `${city.name}, TX`, url: `/services/${city.slug}/` },
   ]}
-  additionalSchema={areaSchema}
+  additionalSchema={schemas}
 >
   <!-- Page Header -->
   <section class="bg-wood texture-wood py-16 md:py-24">
@@ -81,41 +96,28 @@ const areaSchema = JSON.stringify({
     </div>
   </section>
 
-  <!-- Services we provide -->
+  <!-- Common projects -->
   <section class="py-16 md:py-24 bg-cream-dark/50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeading tagline="What We Do">
-        Our Services for {city.name} Residents
-      </SectionHeading>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-        {services.map((service, index) => (
-          <div
-            class="bg-cream border border-gold/10 rounded-sm p-6"
-          >
-            <h3 class="font-serif text-xl text-wood mb-2">{service.name}</h3>
-            <p class="text-charcoal-light text-sm leading-relaxed">{service.shortDescription}</p>
-            <ul class="mt-3 space-y-1">
-              {service.features.slice(0, 3).map((feature) => (
-                <li class="flex items-start gap-2 text-sm text-charcoal-light">
-                  <svg class="w-4 h-4 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <h2 class="font-serif text-3xl text-wood font-bold mb-4">
+        {city.isHomeBase ? `What Our ${city.name} Neighbors Bring Us` : `Common Projects from ${city.name} Homes`}
+      </h2>
+      <div class="ornament">
+        <div class="ornament-diamond"></div>
       </div>
 
-      <div class="text-center mt-10">
-        <a href="/services/" class="text-gold font-semibold hover:text-gold-dark transition-colors inline-flex items-center gap-1">
-          View full service details
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 mt-6">
+        {city.commonProjects.map((project) => (
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <p class="font-medium text-charcoal">{project.title}</p>
+              <p class="text-sm text-charcoal-light">{project.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -200,35 +202,65 @@ const areaSchema = JSON.stringify({
     </div>
   </section>
 
-  <!-- Common projects -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- FAQs -->
+  {city.faqs.length > 0 && (
+    <section class="py-16 md:py-24">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-serif text-3xl text-wood font-bold mb-4">
+          {city.isHomeBase ? `Questions About Our ${city.name} Workshop` : `${city.name} Furniture Repair Questions`}
+        </h2>
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+
+        <div class="mt-8 space-y-6">
+          {city.faqs.map((faq) => (
+            <div class="border-b border-gold/10 pb-6">
+              <h3 class="font-serif text-lg text-wood mb-2">{faq.question}</h3>
+              <p class="text-charcoal-light leading-relaxed">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Services overview -->
+  <section class="py-16 md:py-24 bg-cream-dark/50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="font-serif text-3xl text-wood font-bold mb-4">
-        {city.isHomeBase ? `What Our ${city.name} Neighbors Bring Us` : `Common Projects from ${city.name} Homes`}
+        What We Do
       </h2>
       <div class="ornament">
         <div class="ornament-diamond"></div>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 mt-6">
-        {city.commonProjects.map((project) => (
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
-            <div>
-              <p class="font-medium text-charcoal">{project.title}</p>
-              <p class="text-sm text-charcoal-light">{project.description}</p>
-            </div>
+      <p class="text-charcoal-light mt-4 mb-6 max-w-2xl mx-auto">
+        {city.isHomeBase
+          ? `From our ${city.name} workshop, we handle everything from simple chair repairs to full antique restorations.`
+          : `We provide the same expert craftsmanship to ${city.name} that we offer from our home base in Wylie.`}
+        Our four core services cover virtually any furniture project.
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+        {services.map((service) => (
+          <div class="bg-cream border border-gold/10 rounded-sm p-4">
+            <h3 class="font-serif text-sm md:text-base text-wood">{service.name}</h3>
           </div>
         ))}
+      </div>
+      <div class="mt-8">
+        <a href="/services/" class="text-gold font-semibold hover:text-gold-dark transition-colors inline-flex items-center gap-1">
+          View all services
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Nearby cities -->
   {city.nearbyLinks.length > 0 && (
-    <section class="py-12 bg-cream-dark/50">
+    <section class="py-12">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p class="text-charcoal-light text-sm">
           Also serving nearby:
